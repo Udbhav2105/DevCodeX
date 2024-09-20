@@ -75,6 +75,38 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c2e2d632dd9b8a2b7751117abcfc2b4888ecfe181bd9fca7170d9ef02e595fe2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.4"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      sha256: b9c29a161230ee03d3ccf545097fccd9b87a5264228c5d348202e0f0c28f9010
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      sha256: "2aa08ce0341cc9b354a498388e30986515406668dbcc4f7c950c3e715496693b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.2"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.9.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -99,6 +131,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  leetcode_api_dart:
+    dependency: "direct main"
+    description:
+      name: leetcode_api_dart
+      sha256: eb65131aad4d08033146e3d7331965a825c074559da9bcdd8d67264be7efff26
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:
@@ -192,6 +232,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
+  typed_data:
+    dependency: transitive
+    description:
+      name: typed_data
+      sha256: facc8d6582f16042dd49f2463ff1bd6e2c9ef9f3d5da3d9b087e244a7b564b3c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.2"
   vector_math:
     dependency: transitive
     description:
@@ -208,6 +256,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.4"
+  web:
+    dependency: transitive
+    description:
+      name: web
+      sha256: d43c1d6b787bf0afad444700ae7f4db8827f701bc61c255ac8d328c6f4d52062
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
 sdks:
   dart: ">=3.5.0 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
