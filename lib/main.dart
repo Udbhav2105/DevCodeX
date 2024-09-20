@@ -6,8 +6,8 @@ import 'package:ripoff/pages/home.dart';
 void main() => runApp(MaterialApp(
   initialRoute: '/',
   routes: {
-    '/':(context) => Login(),
-    '/loading': (context) => Loading(),
-    '/home': (context) => Home()
+    '/':(context) => const Login(),
+    '/loading': (context) => const Loading(),
+    '/home': (context) => const Home()
   },
 ));
