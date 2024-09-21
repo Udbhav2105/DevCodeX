@@ -17,19 +17,19 @@ class _LoginState extends State<Login> {
   Future<void> submitUsername() async{
 
   }
-  void data() async {
-    print('here');
-    lc instance = lc(url: 'Udbhav_k');
-    await instance.getData();
-    print(instance.userInfo);
-    print('here1');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    data();
-  }
+  // void data() async {
+  //   print('here');
+  //   Lc instance = Lc(lcUsername: 'Udbhav_k');
+  //   await instance.getData();
+  //   print(instance.userInfo);
+  //   print('here1');
+  // }
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   data();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +61,15 @@ class _LoginState extends State<Login> {
             SizedBox(height: 66),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.pushNamed(context, '/loading',arguments: {
-                  'cfUsername': cfUsername,
-                  'lcUsername': lcUsername
-                });
+                // print(cfUsername.text);
+                if (cfUsername.text.isEmpty  && lcUsername.text.isEmpty){
+                  print('Cannot be empty');
+                }else{
+                  Navigator.pushNamed(context, '/loading',arguments: {
+                    'cfUsername': cfUsername.text,
+                    'lcUsername': lcUsername.text
+                  });
+                }
               },
               icon: const Icon(
                 Icons.arrow_forward,
