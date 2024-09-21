@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ripoff/components/input_field.dart';
-
+import 'package:ripoff/services/leetcode.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -9,6 +9,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  void data() async{
+    print('here');
+    lc instance = lc(url: 'Udbhav_k');
+     await instance.getData();
+     print(instance.userInfo);
+     print('here1');
+
+  }
+  @override
+  void initState() {
+    super.initState();
+    data();
+  }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
