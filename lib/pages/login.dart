@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ripoff/components/input_field.dart';
 import 'package:ripoff/services/leetcode_api.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -9,22 +10,30 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  void data() async{
-    print('here');
-    lc instance = lc(url: 'Udbhav_k');
-     await instance.getData();
-     print(instance.userInfo);
-     print('here1');
+
+  final TextEditingController cfUsername = TextEditingController();
+  final TextEditingController lcUsername = TextEditingController();
+
+  Future<void> submitUsername() async{
 
   }
+  void data() async {
+    print('here');
+    lc instance = lc(url: 'Udbhav_k');
+    await instance.getData();
+    print(instance.userInfo);
+    print('here1');
+  }
+
   @override
   void initState() {
     super.initState();
     data();
   }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFF161616),
       body: Padding(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -32,7 +41,7 @@ class _LoginState extends State<Login> {
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(0,100,0,150),
+              padding: EdgeInsets.fromLTRB(0, 100, 0, 150),
               child: Text(
                 'ENTER USERNAME',
                 textAlign: TextAlign.center,
@@ -44,11 +53,40 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            InputField(inputText: 'Codeforces'),
+            InputField(inputText: 'Codeforces',controller: cfUsername,),
             SizedBox(
               height: 20,
             ),
-            InputField(inputText: 'Leetcode'),
+            InputField(inputText: 'Leetcode',controller: lcUsername,),
+            SizedBox(height: 66),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/loading',arguments: {
+                  'cfUsername': cfUsername,
+                  'lcUsername': lcUsername
+                });
+              },
+              icon: const Icon(
+                Icons.arrow_forward,
+                color: Color(0xFF161616),
+              ),
+              label: Text(
+                "Next",
+                style: TextStyle(
+                    color: Color(0xFF161616),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFFf6fed1),
+                padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                )
+              ),
+            )
           ],
         ),
       ),
