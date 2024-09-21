@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -88,6 +90,7 @@ class Problem {
   final String name;
   final Type type;
   final double? points;
+  final int? rating;
   final List<String> tags;
 
   Problem({
@@ -96,6 +99,7 @@ class Problem {
     required this.name,
     required this.type,
     this.points,
+    this.rating,
     required this.tags,
   });
 
@@ -106,6 +110,7 @@ class Problem {
       name: json['name'],
       type: Type.values.firstWhere((e) => e.toString().split('.').last == json['type']),
       points: json['points']?.toDouble(),
+      rating: json['rating'],
       tags: List<String>.from(json['tags'] ?? []),
     );
   }
@@ -174,10 +179,31 @@ Future<ApiResponse> fetchData(String url) async {
 void main() async {
   const url = 'https://codeforces.com/api/user.status?handle=vaibhavveerwaal'; // Replace with your API endpoint
   try {
+    Set<String> uniqueOkProblems = {};
+    int easySolved = 0;
+    int mediumSolved = 0;
+    int hardSolved = 0;
+    int extremeSolved = 0;
     ApiResponse apiResponse = await fetchData(url);
     print('Status: ${apiResponse.status}');
     for (var result in apiResponse.result) {
-      // if (result.verdict)
+      int? rating = result.problem.rating;
+      if (result.verdict == Verdict.OK) {
+        if (!uniqueOkProblems.contains(result.problem.name)) {
+        uniqueOkProblems.add(result.problem.name);
+        if (rating != null) {
+          if (rating <= 1300) {
+            easySolved++;
+          } else if (rating <= 1900) {
+            mediumSolved++;
+          } else if (rating <= 2600) {
+            hardSolved++;
+          } else if (rating <= 3500) {
+            extremeSolved++;
+          }
+        }
+      }
+      }
       print('Result ID: ${result.id}');
       print('Contest ID: ${result.contestId}');
       print('Problem Name: ${result.problem.name}');
@@ -186,9 +212,13 @@ void main() async {
       print('Author: ${result.author.members.map((m) => m.handle).join(', ')}');
       print('---');
     }
-    int okCount = apiResponse.result.where((item) => item.verdict == Verdict.OK).length;
-    print("AC submissions: ${okCount}");
+    print("Unique problems solved: ${uniqueOkProblems.length}"); // this is the number of solved problems
+    print("easy $easySolved medium $mediumSolved hard $hardSolved extreme $extremeSolved");
+
   } catch (e) {
     print('Error: $e');
   }
 }
+// To get - Number of solved questions --------- found == uniqueOkProblems.length
+//        - Card with (image, max rating, max rank, current rating, contribution, friend count) ----------- already made in codeforces.dart
+//        - solved questions according to difficulty: 800-1300 = easy, 1301-1900 = medium, 1901-2600 = hard, 2601-3500 = extreme ------- found in easySolved, mediumSolved, hardSolved and extremeSolved
