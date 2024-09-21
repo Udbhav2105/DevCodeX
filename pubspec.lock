@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: "706b5707578e0c1b4b7550f64078f0a0f19dec3f50a178ffae7006b0a9ca58fb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -83,6 +91,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.4"
+  html:
+    dependency: "direct main"
+    description:
+      name: html
+      sha256: "3a7812d5bcd2894edf53dfaf8cd640876cf6cef50a8f238745c8b8120ea74d3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.4"
   http:
     dependency: "direct main"
     description:
@@ -136,6 +152,14 @@ packages:
     description:
       name: leetcode_api_dart
       sha256: eb65131aad4d08033146e3d7331965a825c074559da9bcdd8d67264be7efff26
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
+  leetcode_unofficial_api:
+    dependency: "direct main"
+    description:
+      name: leetcode_unofficial_api
+      sha256: "27b936e333c87d9a761facbe65b7733de9260254f1b38b6e90e67524dd94fef2"
       url: "https://pub.dev"
     source: hosted
     version: "0.0.1"
