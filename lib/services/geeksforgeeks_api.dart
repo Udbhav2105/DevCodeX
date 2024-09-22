@@ -1,5 +1,3 @@
-// import 'dart:convert';
-// import 'package:http/http.dart' as http;
 class GfgUser {
   final Info info;
   final SolvedStats? solvedStats;
@@ -80,54 +78,3 @@ class Questions {
     return Questions(question: json['question'], questionUrl: json['questionUrl']);
   }
 }
-
-// void main() async {
-//   const url = 'https://geeks-for-geeks-api.vercel.app/udbhavlamd';
-//   try {
-//     final response = await http.get(Uri.parse(url));
-
-//     if (response.statusCode == 200) {
-//       final data = jsonDecode(response.body);
-//       GfgUser gfgUser = GfgUser.fromJson(data);
-
-//       print('Username: ${gfgUser.info?.userName}');
-//       print('Coding score: ${gfgUser.info?.codingScore}');
-//       print('Institute rank: ${gfgUser.info?.instituteRank}');
-
-//       // Accessing the solved stats
-//       print('Solved count (school): ${gfgUser.solvedStats?.school.count}');
-//       for (var question in gfgUser.solvedStats?.school.questions ?? []) {
-//         print('School Question: ${question.question}');
-//         print('School Question URL: ${question.questionUrl}');
-//       }
-
-//       print('Solved count (basic): ${gfgUser.solvedStats?.basic.count}');
-//       for (var question in gfgUser.solvedStats?.basic.questions ?? []) {
-//         print('Basic Question: ${question.question}');
-//         print('Basic Question URL: ${question.questionUrl}');
-//       }
-
-//       print('Solved count (easy): ${gfgUser.solvedStats?.easy.count}');
-//       for (var question in gfgUser.solvedStats?.easy.questions ?? []) {
-//         print('Easy Question: ${question.question}');
-//         print('Easy Question URL: ${question.questionUrl}');
-//       }
-
-//       print('Solved count (medium): ${gfgUser.solvedStats?.medium.count}');
-//       for (var question in gfgUser.solvedStats?.medium.questions ?? []) {
-//         print('Medium Question: ${question.question}');
-//         print('Medium Question URL: ${question.questionUrl}');
-//       }
-
-//       print('Solved count (hard): ${gfgUser.solvedStats?.hard.count}');
-//       for (var question in gfgUser.solvedStats?.hard.questions ?? []) {
-//         print('Hard Question: ${question.question}');
-//         print('Hard Question URL: ${question.questionUrl}');
-//       }
-//     } else {
-//       print('Failed to load data. Status code: ${response.statusCode}');
-//     }
-//   } catch (e) {
-//     print('Error occurred: $e');
-//   }
-// }
