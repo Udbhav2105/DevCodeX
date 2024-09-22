@@ -20,9 +20,18 @@ class _LoadingState extends State<Loading> {
       Navigator.pushNamed(context, '/');
     } else {
       await instance.getData();
-      print('Data received ${instance.problemCount}');
+      // print('Data received ${instance.problemCount}');
       print('received');
     }
+    await instance.fetchProblemCount();
+    // print('${instance.problemCount.totalAcCount} \n ${instance.problemCount.totalEasySubmittedCount}\n ${instance.problemCount.totalMediumSubmittedCount} \n ${instance.problemCount.totalHardSubmittedCount}');
+    Navigator.pushReplacementNamed(context, '/leetcodePage',arguments: {
+      'totalProblem' : instance.problemCount.totalAcCount as int?,
+      'totalEasyAccepted': instance.problemCount.totalEasySubmittedCount as int?,
+      'totalMediumAccepted': instance.problemCount.totalMediumSubmittedCount as int?,
+      'totalHardAccepted': instance.problemCount.totalHardSubmittedCount as int?,
+      'username': data['lcUsername'],
+    });
   }
 
   @override
