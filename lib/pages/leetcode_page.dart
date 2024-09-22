@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ripoff/components/username_avatar.dart';
 
 class LeetcodePage extends StatefulWidget {
   const LeetcodePage({super.key});
@@ -15,23 +16,7 @@ class _LeetcodePageState extends State<LeetcodePage> {
       body: Column(
         children: [
           SafeArea(
-            child: Container(
-              margin: EdgeInsets.fromLTRB(30, 10, 0, 20),
-              child: Row(
-                children: [
-                  CircleAvatar(),
-                  SizedBox(width:30,),
-                  Text(
-                    'Username'.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            child: AvatarUsername(user: 'username',),
           ),
           Container(
             padding: EdgeInsets.fromLTRB(150, 100, 150, 100),
