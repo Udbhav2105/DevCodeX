@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(0, 100, 0, 150),
               child: Text(
                 'ENTER USERNAME',
@@ -54,11 +54,11 @@ class _LoginState extends State<Login> {
               ),
             ),
             InputField(inputText: 'Codeforces',controller: cfUsername,),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             InputField(inputText: 'Leetcode',controller: lcUsername,),
-            SizedBox(height: 66),
+            const SizedBox(height: 66),
             ElevatedButton.icon(
               onPressed: () {
                 // print(cfUsername.text);
@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                 Icons.arrow_forward,
                 color: Color(0xFF161616),
               ),
-              label: Text(
+              label: const Text(
                 "Next",
                 style: TextStyle(
                     color: Color(0xFF161616),
