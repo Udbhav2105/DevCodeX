@@ -22,7 +22,7 @@ class _AvatarUsernameState extends State< AvatarUsername> {
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color(0xFFf6fed1),
             ),
           )
         ],
