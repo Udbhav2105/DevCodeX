@@ -18,17 +18,17 @@ class RadialBarChart extends StatelessWidget {
     List<ChartData> chartData = [
       ChartData(
         "Hard",
-        1,
+        hard.toDouble(),
         826,
         Colors.red,
       ),
       ChartData(
         'Medium',
-        44,
+        medium.toDouble(),
         1726,
         Colors.orange,
       ),
-      ChartData('Easy', 25, 826, Colors.green[300]!),
+      ChartData('Easy', easy.toDouble(), 826, Colors.green[300]!),
     ];
 
     return Container(
