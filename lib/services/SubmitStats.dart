@@ -1,4 +1,4 @@
-class SubmitStats {
+class Stats {
   final int totalSubmission;
   final int totalAttemptsCount;
   final int totalEasySubmission;
@@ -16,7 +16,7 @@ class SubmitStats {
   final int totalHardAcSubmission;
   final int totalHardSubmittedCount;
 
-  SubmitStats({
+  Stats({
     required this.totalSubmission,
     required this.totalAttemptsCount,
     required this.totalEasySubmission,
