@@ -34,6 +34,12 @@ class UnifiedApiResponse {
       throw Exception('Unknown API type');
     }
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'status': status,
+      'result': result,
+    };
+  }
 }
 class Result2 {
   final int id;
