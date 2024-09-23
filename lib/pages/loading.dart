@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ripoff/services/leetcode_api.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:ripoff/services/codeforces_api.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -11,6 +12,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   Map data = {};
+
   void setUpLeetcode() async {
     data = ModalRoute.of(context)?.settings.arguments as Map;
     print(data);
@@ -31,7 +33,10 @@ class _LoadingState extends State<Loading> {
       'totalMediumAccepted': instance.problemCount.totalMediumSubmittedCount as int?,
       'totalHardAccepted': instance.problemCount.totalHardSubmittedCount as int?,
       'username': data['lcUsername'],
-    });
+      'avatar': instance.userInfo.username,
+    }
+    );
+    UnifiedApiResponse user = fetchData(, 'userInfo');
   }
 
   @override
