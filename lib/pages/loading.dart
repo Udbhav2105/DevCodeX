@@ -36,7 +36,20 @@ class _LoadingState extends State<Loading> {
       'avatar': instance.userInfo.username,
     }
     );
-    UnifiedApiResponse user = fetchData(, 'userInfo');
+    bool cfAuth = false;
+    String cfUsername = data['cfUsername'];
+    String urlStatus = 'https://codeforces.com/api/user.status?handle=${cfUsername}';
+    String urlInfo = 'https://codeforces.com/api/user.info?handles=${cfUsername}&checkHistoricHandles=false';
+
+    try {
+      UnifiedApiResponse user = await fetchData(urlStatus, 'userInfo');
+      UnifiedApiResponse user2 = await fetchData(urlInfo, 'userInfo');
+      cfAuth = true;
+    } catch (e) {
+    print('error is $e');
+    cfAuth = false;
+    }
+
   }
 
   @override
