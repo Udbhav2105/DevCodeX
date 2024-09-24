@@ -19,17 +19,19 @@ class _HomeState extends State<Home> {
     List<Widget> cfOrLc = [];
     if (data['cfAuth']) {
       cfOrLc.add(
+        // whats wrong with ours?
           Container(
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/leecodePage',arguments: data);
+                  Navigator.pushNamed(context, '/leetcodePage',arguments: data);
                 },
                 icon: Icon(Icons.arrow_forward),
-                label: Text("CODEFORCES"),
+                label: Text("Leetcodde"),
               ))
-      );
+      );// whats that thing ? on your phone? aint that page?
       cfOrLc.add(SizedBox(height: 30,));
           }
+    //
           if (data['lcAuth'])
       {
         cfOrLc.add(SizedBox(height: 30,));
@@ -37,7 +39,7 @@ class _HomeState extends State<Home> {
             Container(
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/Codeforce',arguments: data);
+                    Navigator.pushNamed(context, '/codeforcesPage',arguments: data);
                   },
                   icon: Icon(Icons.arrow_forward),
                   label: Text("CODEFORCES"),
@@ -45,10 +47,12 @@ class _HomeState extends State<Home> {
         );
       }
       return Scaffold(
-        body: Column(
-          children: [
-            ...cfOrLc
-          ],
+        body: SafeArea(
+          child: Column(
+            children: [
+              ...cfOrLc
+            ],
+          ),
         ),
       );
     }

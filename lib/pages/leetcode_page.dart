@@ -36,7 +36,7 @@ class _LeetcodePageState extends State<LeetcodePage> {
             ),
           ),
           ProblemCountCard(
-            // why this taking too long? its yesp
+            // why this taking
             totalProblems: d['lcTotal'],
             easyCount: d['lcEasy'],
             mediumCount: d['lcMedium'],

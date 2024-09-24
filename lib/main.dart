@@ -7,13 +7,13 @@ import 'package:ripoff/pages/codeforces_page.dart';
 
 import 'package:ripoff/pages/choice.dart';
 void main() => runApp(MaterialApp(
-  // home: Choice();
+  // home: Choice(); correct user id?
   initialRoute: '/',
   routes: {
     '/':(context) => const Login(),
     '/loading': (context) => const Loading(),
     '/home': (context) => const Home(),
     '/leetcodePage':(context) => LeetcodePage(),
-    '/codeforcesPage' :(context) => Codeforces(),
+    '/codeforcesPage' :(context) =>Codeforces(),
   },
 ));
