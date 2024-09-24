@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
           Container(
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/leetcodePage',arguments: data);
+                  Navigator.pushReplacementNamed(context, '/leetcodePage',arguments: data);
                 },
                 icon: Icon(Icons.arrow_forward),
                 label: Text("Leetcodde"),
@@ -39,14 +39,16 @@ class _HomeState extends State<Home> {
             Container(
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/codeforcesPage',arguments: data);
+                    Navigator.pushReplacementNamed(context, '/codeforcesPage',arguments: data);
                   },
                   icon: Icon(Icons.arrow_forward),
                   label: Text("CODEFORCES"),
                 ))
         );
-      }
+      }// yes you may pull
       return Scaffold(
+        
+        // backgroundColor: Color(OxFF),
         body: SafeArea(
           child: Column(
             children: [

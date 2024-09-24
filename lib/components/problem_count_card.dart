@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ripoff/components/radial_bargraph.dart';
 
-class ProblemCountCard extends StatelessWidget {
+class ProblemCountCard extends StatefulWidget {
   final int totalProblems;
   final int easyCount;
   final int mediumCount;
@@ -23,15 +23,20 @@ class ProblemCountCard extends StatelessWidget {
       super.key});
 
   @override
+  State<ProblemCountCard> createState() => _ProblemCountCardState();
+}
+
+class _ProblemCountCardState extends State<ProblemCountCard> {
+  @override
   Widget build(BuildContext context) {
     List<Widget> extremeText = [];
-    if (extremeCount1 != null) {
+    if (widget.extremeCount1 != null) {
       extremeText.add(SizedBox(
         height: 30,
       ));
       extremeText.add(
         Text(
-          '${extremeCountOneName?.toUpperCase()}  $extremeCount1',
+          '${widget.extremeCountOneName?.toUpperCase()}  ${widget.extremeCount1}',
           style: TextStyle(
             color: Colors.purple,
             fontSize: 16,
@@ -40,13 +45,13 @@ class ProblemCountCard extends StatelessWidget {
         ),
       );
     }
-    if (extremeCount2 != null) {
+    if (widget.extremeCount2 != null) {
       extremeText.add(SizedBox(
         height: 30,
       ));
       extremeText.add(
         Text(
-          '${extremeCountTwoName?.toUpperCase()} $extremeCount2',
+          '${widget.extremeCountTwoName?.toUpperCase()} ${widget.extremeCount2}',
           style: TextStyle(
             color: Colors.deepPurple,
             fontSize: 16,
@@ -87,7 +92,7 @@ class ProblemCountCard extends StatelessWidget {
                       fontSize: 20),
                 ),
                 Text(
-                  'Total Solved: $totalProblems',
+                  'Total Solved: ${widget.totalProblems}',
                   style: TextStyle(
                       color: Color(0xFFf6fed1),
                       fontWeight: FontWeight.bold,
@@ -99,7 +104,7 @@ class ProblemCountCard extends StatelessWidget {
                     SizedBox(
                       height: 30,
                     ),
-                    RadialBarChart(easyCount,mediumCount,hardCount),
+                    RadialBarChart(widget.easyCount,widget.mediumCount,widget.hardCount),
                     SizedBox(
                       width: 16,
                     ),
@@ -107,7 +112,7 @@ class ProblemCountCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Easy $easyCount",
+                          "Easy ${widget.easyCount}",
                           style: TextStyle(
                             color: Colors.green[300],
                             fontSize: 16,
@@ -118,7 +123,7 @@ class ProblemCountCard extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          "Medium $mediumCount",
+                          "Medium ${widget.mediumCount}",
                           style: TextStyle(
                             color: Colors.orange,
                             fontSize: 16,
@@ -129,7 +134,7 @@ class ProblemCountCard extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          "Hard $hardCount",
+                          "Hard ${widget.hardCount}",
                           style: TextStyle(
                             color: Colors.red,
                             fontSize: 16,
