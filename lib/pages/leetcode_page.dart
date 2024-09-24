@@ -32,14 +32,15 @@ class _LeetcodePageState extends State<LeetcodePage> {
         children: [
           SafeArea(
             child: AvatarUsername(
-              user: d['username'],
+              user: d['lcUsername'],
             ),
           ),
           ProblemCountCard(
-            totalProblems: d['totalProblem'],
-            easyCount: d['totalEasyAccepted'],
-            mediumCount: d['totalMediumAccepted'],
-            hardCount: d['totalHardAccepted'],
+            // why this taking too long? its yesp
+            totalProblems: d['lcTotal'],
+            easyCount: d['lcEasy'],
+            mediumCount: d['lcMedium'],
+            hardCount: d['lcHard'],
           ),
         ],
       ),

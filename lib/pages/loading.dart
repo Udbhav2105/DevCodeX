@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ripoff/services/leetcode_api.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:ripoff/services/leetcode_api.dart';
 import 'package:ripoff/services/codeforces_api.dart';
+import 'package:ripoff/services/test.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -12,57 +15,98 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   Map data = {};
-
-  void setUpLeetcode() async {
+  // Function to fetch Codeforces data using the provided username
+  void setUpLeetcodeAndCodeforces() async {
+    // Fetch the passed data from previous screen (Leetcode and Codeforces usernames)
     data = ModalRoute.of(context)?.settings.arguments as Map;
-    print(data);
-    Lc instance = Lc(lcUsername: data['lcUsername']);
-    await instance.authenticate();
-    if (instance.auth == false) {
-      Navigator.pushNamed(context, '/');
-    } else {
-      await instance.getData();
-      // print('Data received ${instance.problemCount}');
-      print('received');
-    }
+    String lcUsername = data['lcUsername'];
+    String cfUsername = data['cfUsername']; // Get the Codeforces username
+
+    // Fetch Codeforces data
+    // Map<String, int> codeforcesData = await fetchCodeforcesData(cfUsername);
+    CfData codeforcesData = CfData(username: cfUsername);
+    await codeforcesData.fetchUserStatus();
+    await codeforcesData.fetchUserInfo();
+
+    // Fetch Leetcode data
+    Lc instance = Lc(lcUsername: lcUsername);
+    await instance.lcAuthenticate();
+    await instance.getData();
     await instance.fetchProblemCount();
-    // print('${instance.problemCount.totalAcCount} \n ${instance.problemCount.totalEasySubmittedCount}\n ${instance.problemCount.totalMediumSubmittedCount} \n ${instance.problemCount.totalHardSubmittedCount}');
-    Navigator.pushReplacementNamed(context, '/leetcodePage',arguments: {
-      'totalProblem' : instance.problemCount.totalAcCount as int?,
-      'totalEasyAccepted': instance.problemCount.totalEasySubmittedCount as int?,
-      'totalMediumAccepted': instance.problemCount.totalMediumSubmittedCount as int?,
-      'totalHardAccepted': instance.problemCount.totalHardSubmittedCount as int?,
-      'username': data['lcUsername'],
-      'avatar': instance.userInfo.username,
+    if (!instance.lcAuth && !codeforcesData.cfAuth) {
+      Navigator.pushNamed(context, '/');
+    } else if (instance.lcAuth && !codeforcesData.cfAuth) {
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
+        'lcTotal': instance.problemCount.totalAcCount,
+        'lcEasy': instance.problemCount.totalEasySubmittedCount,
+        'lcMedium': instance.problemCount.totalMediumSubmittedCount,
+        'lcHard': instance.problemCount.totalHardSubmittedCount,
+        'lcUsername': lcUsername,
+        'lcAvatar': instance.userInfo.username,
+        'totalEasy': instance.easyCtn,
+        'totalMedium': instance.mediumCtn,
+        'totalHard': instance.hardCtn,
+        'lcAuth': instance.lcAuth,
+        'cfAuth': codeforcesData.cfAuth,
+      });
+    } else if (!instance.lcAuth && codeforcesData.cfAuth) {
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
+        'cfAuth': codeforcesData.cfAuth,
+        'cfUsername': cfUsername,
+        'cfAvatar': codeforcesData.avatar,
+        'cfRating': codeforcesData.userRating,
+        'cfRank': codeforcesData.rank,
+        'cfMaxRating': codeforcesData.maxRating,
+        'cfMaxRank': codeforcesData.maxRank,
+        'cfTotal': codeforcesData.uniqueOkProblems.length,
+        'cfEasy': codeforcesData.easySolved,
+        'cfMedium': codeforcesData.mediumSolved,
+        'cfHard': codeforcesData.hardSolved,
+        'cfExtreme': codeforcesData.extremeSolved,
+        'cfUnrated': codeforcesData.unratedSolved,
+        'lcAuth': instance.lcAuth,
+      });
+    } else {
+      // Pass both Leetcode and Codeforces data to the next page
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
+        'lcTotal': instance.problemCount.totalAcCount,
+        'lcEasy': instance.problemCount.totalEasySubmittedCount,
+        'lcMedium': instance.problemCount.totalMediumSubmittedCount,
+        'lcHard': instance.problemCount.totalHardSubmittedCount,
+        'lcUsername': lcUsername,
+        'lcAvatar': instance.userInfo.username,
+        'totalEasy': instance.easyCtn,
+        'totalMedium': instance.mediumCtn,
+        'totalHard': instance.hardCtn,
+        'lcAuth': instance.lcAuth,
+        // Codeforces Data :-
+        'cfAuth': codeforcesData.cfAuth,
+        'cfUsername': cfUsername,
+        'cfAvatar': codeforcesData.avatar,
+        'cfRating': codeforcesData.userRating,
+        'cfRank': codeforcesData.rank,
+        'cfMaxRating': codeforcesData.maxRating,
+        'cfMaxRank': codeforcesData.maxRank,
+        'cfTotal': codeforcesData.uniqueOkProblems.length,
+        'cfEasy': codeforcesData.easySolved,
+        'cfMedium': codeforcesData.mediumSolved,
+        'cfHard': codeforcesData.hardSolved,
+        'cfExtreme': codeforcesData.extremeSolved,
+        'cfUnrated': codeforcesData.unratedSolved,
+      });
     }
-    );
-    bool cfAuth = false;
-    String cfUsername = data['cfUsername'];
-    String urlStatus = 'https://codeforces.com/api/user.status?handle=${cfUsername}';
-    String urlInfo = 'https://codeforces.com/api/user.info?handles=${cfUsername}&checkHistoricHandles=false';
-
-    try {
-      UnifiedApiResponse user = await fetchData(urlStatus, 'userInfo');
-      UnifiedApiResponse user2 = await fetchData(urlInfo, 'userInfo');
-      cfAuth = true;
-    } catch (e) {
-    print('error is $e');
-    cfAuth = false;
-    }
-
   }
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero,(){
-      setUpLeetcode();
+    Future.delayed(Duration.zero, () {
+      setUpLeetcodeAndCodeforces();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return const Scaffold(
       backgroundColor: Color(0xFF161616),
       body: Center(
@@ -74,3 +118,4 @@ class _LoadingState extends State<Loading> {
     );
   }
 }
+
