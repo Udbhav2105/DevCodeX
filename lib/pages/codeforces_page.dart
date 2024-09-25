@@ -4,10 +4,9 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:ripoff/services/codeforces_api.dart';
-
 class Codeforces extends StatefulWidget {
   const Codeforces({super.key});
+
   @override
   CodeforcesState createState() => CodeforcesState();
 }
@@ -26,45 +25,90 @@ class CodeforcesState extends State<Codeforces> {
   @override
   Widget build(BuildContext context) {
     d = ModalRoute.of(context)?.settings.arguments as Map;
+
+    // Prepare chart data
     chartData = [
-      ChartData('Easy (800-1300)', d['cfEasy']),
-      ChartData('Medium (1301-1900)', d['cfMedium']),
-      ChartData('Hard (1901-2600)', d['cfHard']),
-      ChartData('Extreme (2601-3500)', d['cfExtreme']),
-      ChartData('Unrated', d['cfUnrated']),
+      ChartData('Easy (800-1300)', d['cfEasy'] ?? 0),
+      ChartData('Medium (1301-1900)', d['cfMedium'] ?? 0),
+      ChartData('Hard (1901-2600)', d['cfHard'] ?? 0),
+      ChartData('Extreme (2601-3500)', d['cfExtreme'] ?? 0),
+      ChartData('Unrated', d['cfUnrated'] ?? 0),
     ];
-    return Column(
-      children: [
-        SafeArea(
-            child: CircleAvatar(
-          backgroundImage: NetworkImage(d['cfAvatar']),
-          radius: 50,
-        )),
-        const SizedBox(
-          height: 10,
-        ),
-        Text('${d['cfUsername']}'),
-        Text('Rating: ${d['cfRating']}'),
-        Text('Max Rating: ${d['cfMaxRating']}'),
-        Text('Rank: ${d['cfRank']}'),
-        Text('Max Rank: ${d['cfMaxRank']}'),
-        const SizedBox(
-          height: 10,
-        ),
-        Expanded(
-          child: SfCircularChart(
-            tooltipBehavior: _tooltip,
-            series: <CircularSeries<ChartData, String>>[
-              DoughnutSeries<ChartData, String>(
-                dataSource: chartData,
-                xValueMapper: (ChartData data, _) => data.x,
-                yValueMapper: (ChartData data, _) => data.y,
-                dataLabelSettings: const DataLabelSettings(isVisible: true),
+
+    return Scaffold(
+      backgroundColor: Colors.black, // Dark background
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            SafeArea(
+              child: AvatarUsername(
+                user: d['cfUsername'] ?? 'User',
+                avatar: d['cfAvatar'] ?? 'default_avatar_url', // Replace with your default avatar URL
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              '${d['cfUsername'] ?? 'Unknown User'}',
+              style: const TextStyle(
+                color: Color(0xFFD4AF37), // Gold color
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Rating: ${d['cfRating'] ?? 'N/A'}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            Text(
+              'Max Rating: ${d['cfMaxRating'] ?? 'N/A'}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            Text(
+              'Rank: ${d['cfRank'] ?? 'N/A'}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            Text(
+              'Max Rank: ${d['cfMaxRank'] ?? 'N/A'}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Card(
+                color: const Color(0xFF1A1A1A), // Darker card background
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 10,
+                child: SfCircularChart(
+                  tooltipBehavior: _tooltip,
+                  series: <CircularSeries<ChartData, String>>[
+                    DoughnutSeries<ChartData, String>(
+                      dataSource: chartData,
+                      xValueMapper: (ChartData data, _) => data.x,
+                      yValueMapper: (ChartData data, _) => data.y,
+                      dataLabelSettings: const DataLabelSettings(isVisible: true),
+                      radius: '80%', // Control the size of the chart
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -72,15 +116,7 @@ class CodeforcesState extends State<Codeforces> {
 // Model class for chart data
 class ChartData {
   ChartData(this.x, this.y);
+
   final String x;
   final int y;
-}
-
-Future<UnifiedApiResponse> fetchData(String url, String apiType) async {
-  final response = await http.get(Uri.parse(url));
-  if (response.statusCode == 200) {
-    return UnifiedApiResponse.fromJson(json.decode(response.body), apiType);
-  } else {
-    throw Exception('Failed to load data');
-  }
 }
