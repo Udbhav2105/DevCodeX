@@ -16,8 +16,6 @@ import 'package:leetcode_unofficial_api/models/user_badges/badges.dart';
 import 'package:leetcode_unofficial_api/models/user_data.dart';
 
 // import 'package:html/parser.dart' as htmlParser;
-import 'package:ripoff/services/user.dart';
-import 'package:ripoff/services/SubmitStats.dart';
 
 class Lc {
   late dynamic lcUsername;
