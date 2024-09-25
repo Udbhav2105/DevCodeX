@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
           Container(
               child: ElevatedButton.icon(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, '/leetcodePage',
+          Navigator.pushNamed(context, '/leetcodePage',
               arguments: data);
         },
         icon: Icon(Icons.arrow_forward),
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
       cfOrLc.add(Container(
           child: ElevatedButton.icon(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, '/codeforcesPage',
+          Navigator.pushNamed(context, '/codeforcesPage',
               arguments: data);
         },
         icon: Icon(Icons.arrow_forward),

@@ -35,7 +35,7 @@ class _LoadingState extends State<Loading> {
       await instance.getData();
     print('Lc Auth: ${instance.lcAuth}\n Cf Auth ${codeforcesData.cfAuth}');
     if (!instance.lcAuth && !codeforcesData.cfAuth) {
-      Navigator.pushNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/');
     } else if (instance.lcAuth && !codeforcesData.cfAuth) {
       Navigator.pushReplacementNamed(context, '/home', arguments: {
         'cfAuth': codeforcesData.cfAuth,
