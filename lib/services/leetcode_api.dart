@@ -7,9 +7,12 @@ import 'dart:convert';
 // import 'package:leetcode_api_dart/models/problem.dart';
 import 'package:leetcode_unofficial_api/apis.dart';
 
+import 'package:leetcode_unofficial_api/apis.dart';
+
 // import 'package:leetcode_unofficial_api/models/lc_problem.dart';
 import 'package:http/http.dart' as http;
 import 'package:leetcode_unofficial_api/models/submit_stats.dart';
+import 'package:leetcode_unofficial_api/models/user_badges/badges.dart';
 import 'package:leetcode_unofficial_api/models/user_data.dart';
 
 // import 'package:html/parser.dart' as htmlParser;
@@ -17,35 +20,87 @@ import 'package:ripoff/services/user.dart';
 import 'package:ripoff/services/SubmitStats.dart';
 
 class Lc {
+  late dynamic lcUsername;
   int easyCtn = 0;
   int mediumCtn = 0;
   int hardCtn = 0;
-  late dynamic userInfo;
-  // late dynamic stats;
-  late String lcUsername;
+  int totalProblemCount = 0;
+  int totalAcEasy = 0;
+  int totalAcMedium = 0;
+  int totalAcHard = 0;
+  dynamic lcAvatar =   'https://assets.leetcode.com/users/default_avatar.jpg';
   late String daily;
+  late dynamic userInfo;
   late dynamic problemCount;
   late dynamic questions;
   late bool lcAuth = false;
+  List<String>? badgeUrls = [];
 
   Lc({required this.lcUsername});
 
-  Future<void> lcAuthenticate() async {
-    print('initializing>....');
+  // Future<void> lcAuthenticate() async {
+  //   print('initializing>....');
+  //   try {
+  //     lcAuth = true;
+  //   } catch (e) {
+  //     print("Error Fetching User Data");
+  //     lcAuth = false;
+  //   }
+  // }
+
+  // Future<void> fetchProblemCount() async {
+  //   final response =
+  //       await http.get(Uri.parse('https://leetcode.com/api/problems/all/'));
+  //   // if (response.statusCode == 200){
+  //   try {
+  //     final data = jsonDecode(response.body);
+  //     final problem = data['stat_status_pairs'];
+  //
+  //     for (var problem in problem) {
+  //       final difficulty = problem['difficulty']['level'];
+  //       if (difficulty == 1) {
+  //         easyCtn++;
+  //       } else if (difficulty == 2) {
+  //         mediumCtn++;
+  //       } else if (difficulty == 3) {
+  //         hardCtn++;
+  //       }
+  //     }
+  //     print('received graph data');
+  //   } catch (e) {
+  //     print("exception is $e");
+  //   }
+  // }
+
+  Future<void> getData() async {
     try {
       await LeetCodeAPI.initializeApp(lcUsername);
-      lcAuth = true;
-    } catch (e) {
-      print("Error Fetching User Data");
-      lcAuth = false;
-    }
-  }
+      print('initializing>....');
+      final userData = await LeetCodeAPI.instance.userData();
+      final dailyProblem = await LeetCodeAPI.instance.dailyProblem();
+      final solvedProblemCount =
+      await LeetCodeAPI.instance.solvedProblemCount();
+      final userBadges = await LeetCodeAPI.instance.userBadges();
 
-  Future<void> fetchProblemCount() async {
-    final response =
-        await http.get(Uri.parse('https://leetcode.com/api/problems/all/'));
-    // if (response.statusCode == 200){
-    try {
+      badgeUrls = userBadges?.badges.map((badge) {
+        if (badge.icon != null && badge.icon.startsWith('/static')) {
+          return 'https://leetcode.com${badge.icon}';
+        } else {
+          return badge.icon ?? ''; // Return icon or an empty string
+        }
+      }).toList();
+      print('Badge URLs: $badgeUrls');
+      lcUsername = userData?.username;
+      totalAcEasy = solvedProblemCount!.totalEasySubmittedCount;
+      totalAcMedium = solvedProblemCount.totalMediumSubmittedCount;
+      totalAcHard = solvedProblemCount.totalHardSubmittedCount;
+      totalProblemCount = solvedProblemCount.totalAcCount;
+      lcAvatar = userData?.avatar;
+      daily = dailyProblem.content;
+      // problemCount = solvedProblemCount.;
+
+      final response =
+      await http.get(Uri.parse('https://leetcode.com/api/problems/all/'));
       final data = jsonDecode(response.body);
       final problem = data['stat_status_pairs'];
 
@@ -59,31 +114,10 @@ class Lc {
           hardCtn++;
         }
       }
-      print('received graph data');
-      lcAuth = true;
-    }
-    catch (e) {
-      print("exception is $e");
-      lcAuth = false;
-    }
-  }
-
-  Future<void> getData() async {
-    // if (lcAuth == false) {
-    //   print("User not Authenticated");
-    //   return;
-    // }
-    try {
-      final userData = await LeetCodeAPI.instance.userData();
-      final dailyProblem = await LeetCodeAPI.instance.dailyProblem();
-      final solvedProblemCount =
-          await LeetCodeAPI.instance.solvedProblemCount();
-      userInfo = userData;
-      problemCount = solvedProblemCount;
-      daily = dailyProblem.content;
+      // print('received graph data');
       lcAuth = true;
     } catch (e) {
-      print('Error is encountered ${e}');
+      print('Error encountered: $e');
       lcAuth = false;
     }
   }

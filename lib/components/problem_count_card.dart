@@ -94,7 +94,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
                 Text(
                   'Total Solved: ${widget.totalProblems}',
                   style: TextStyle(
-                      color: Color(0xFFf6fed1),
+                      color: Color(0xFff6fed1).withOpacity(0.7),
                       fontWeight: FontWeight.bold,
                       fontSize: 14),
                 ),
