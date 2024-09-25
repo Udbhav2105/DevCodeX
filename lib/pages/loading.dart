@@ -30,9 +30,11 @@ class _LoadingState extends State<Loading> {
 
     // Fetch Leetcode data
     Lc instance = Lc(lcUsername: lcUsername);
-    await instance.lcAuthenticate();
-    await instance.getData();
-    await instance.fetchProblemCount();
+    // await instance.lcAuthenticate();
+    //   await instance.fetchProblemCount();
+      await instance.getData();
+      instance.lcAuth = true;
+    print('Lc Auth: ${instance.lcAuth}\n Cf Auth ${codeforcesData.cfAuth}');
     if (!instance.lcAuth && !codeforcesData.cfAuth) {
       Navigator.pushNamed(context, '/');
     } else if (instance.lcAuth && !codeforcesData.cfAuth) {

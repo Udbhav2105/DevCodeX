@@ -14,23 +14,18 @@ class _LoginState extends State<Login> {
   final TextEditingController cfUsername = TextEditingController();
   final TextEditingController lcUsername = TextEditingController();
 
-  Future<void> submitUsername() async{
-
-  }
-  // void data() async {
-  //   print('here');
-  //   Lc instance = Lc(lcUsername: 'Udbhav_k');
-  //   await instance.getData();
-  //   print(instance.userInfo);
-  //   print('here1');
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   cfUsername.clear();
+  //   lcUsername.clear();
   // }
-  //
   // @override
   // void initState() {
+  //   // TODO: implement initState
   //   super.initState();
-  //   data();
+  //   didChangeDependencies();
   // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

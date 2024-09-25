@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
         ?.settings
         .arguments as Map;
     List<Widget> cfOrLc = [];
-    if (data['cfAuth']) {
+    if (data['lcAuth']) {
       cfOrLc.add(
         // whats wrong with ours?
           Container(
@@ -26,13 +26,13 @@ class _HomeState extends State<Home> {
                   Navigator.pushReplacementNamed(context, '/leetcodePage',arguments: data);
                 },
                 icon: Icon(Icons.arrow_forward),
-                label: Text("Leetcodde"),
+                label: Text("Leetcode"),
               ))
       );// whats that thing ? on your phone? aint that page?
       cfOrLc.add(SizedBox(height: 30,));
           }
     //
-          if (data['lcAuth'])
+          if (data['cfAuth'])
       {
         cfOrLc.add(SizedBox(height: 30,));
         cfOrLc.add(
