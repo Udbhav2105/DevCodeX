@@ -21,7 +21,7 @@ class _AvatarUsernameState extends State< AvatarUsername> {
           ),
           SizedBox(width:30,),
           Text(
-            '${widget.user}'.toUpperCase(),
+            '${widget.user}',
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
