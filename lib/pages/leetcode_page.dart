@@ -34,6 +34,7 @@ class _LeetcodePageState extends State<LeetcodePage> {
             SafeArea(
               child: AvatarUsername(
                 user: d['lcData'].lcUsername,
+                avatar: d['lcData'].lcAvatar,
               ),
             ),
             ProblemCountCard(

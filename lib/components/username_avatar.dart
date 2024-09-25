@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AvatarUsername extends StatefulWidget {
   final String user;
-  const  AvatarUsername({required this.user,super.key});
+  final String avatar;
+  const  AvatarUsername({required this.user,super.key, required this.avatar});
 
   @override
   State< AvatarUsername> createState() => _AvatarUsernameState();
@@ -15,7 +16,9 @@ class _AvatarUsernameState extends State< AvatarUsername> {
       margin: EdgeInsets.fromLTRB(30, 10, 0, 20),
       child: Row(
         children: [
-          CircleAvatar(),
+          CircleAvatar(
+            backgroundImage: NetworkImage(widget.avatar),
+          ),
           SizedBox(width:30,),
           Text(
             '${widget.user}'.toUpperCase(),

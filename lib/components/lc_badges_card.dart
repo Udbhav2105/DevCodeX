@@ -36,23 +36,26 @@ class BadgesCard extends StatelessWidget {
                 ),
                 // Use Expanded to ensure proper height management
                 SizedBox(height: 20,),
-                SizedBox(
-                  height: 80, // Set a specific height for the ListView
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal, // Set horizontal scroll
-                    itemCount: badges.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(6),
-                        child: Image.network(
-                          badges[index],
-                          height: 100,
-                          width: 100,
+                badges != []
+                    ? SizedBox(
+                        height: 80, // Set a specific height for the ListView
+                        child: ListView.builder(
+                          scrollDirection:
+                              Axis.horizontal, // Set horizontal scroll
+                          itemCount: badges.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: Image.network(
+                                badges[index],
+                                height: 80,
+                                width: 80,
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      )
+                    : SizedBox(height: 0),
               ],
             ),
           ),
