@@ -3,8 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:ripoff/services/leetcode_api.dart';
-import 'package:ripoff/services/codeforces_api.dart';
-import 'package:ripoff/services/test.dart';
+
+import 'package:ripoff/services/cfdata.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
