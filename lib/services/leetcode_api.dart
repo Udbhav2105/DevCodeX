@@ -20,14 +20,17 @@ import 'package:ripoff/services/user.dart';
 import 'package:ripoff/services/SubmitStats.dart';
 
 class Lc {
+  late dynamic lcUsername;
   int easyCtn = 0;
   int mediumCtn = 0;
   int hardCtn = 0;
-  late dynamic userInfo;
-
-  // late dynamic stats;
-  late String lcUsername;
+  int totalProblemCount = 0;
+  int totalAcEasy = 0;
+  int totalAcMedium = 0;
+  int totalAcHard = 0;
+  dynamic lcAvatar =   'https://assets.leetcode.com/users/default_avatar.jpg';
   late String daily;
+  late dynamic userInfo;
   late dynamic problemCount;
   late dynamic questions;
   late bool lcAuth = false;
@@ -76,8 +79,9 @@ class Lc {
       final userData = await LeetCodeAPI.instance.userData();
       final dailyProblem = await LeetCodeAPI.instance.dailyProblem();
       final solvedProblemCount =
-          await LeetCodeAPI.instance.solvedProblemCount();
+      await LeetCodeAPI.instance.solvedProblemCount();
       final userBadges = await LeetCodeAPI.instance.userBadges();
+
       badgeUrls = userBadges?.badges.map((badge) {
         if (badge.icon != null && badge.icon.startsWith('/static')) {
           return 'https://leetcode.com${badge.icon}';
@@ -86,9 +90,14 @@ class Lc {
         }
       }).toList();
       print('Badge URLs: $badgeUrls');
-      userInfo = userData;
-      problemCount = solvedProblemCount;
+      lcUsername = userData?.username;
+      totalAcEasy = solvedProblemCount!.totalEasySubmittedCount;
+      totalAcMedium = solvedProblemCount.totalMediumSubmittedCount;
+      totalAcHard = solvedProblemCount.totalHardSubmittedCount;
+      totalProblemCount = solvedProblemCount.totalAcCount;
+      lcAvatar = userData?.avatar;
       daily = dailyProblem.content;
+      // problemCount = solvedProblemCount.;
 
       final response =
       await http.get(Uri.parse('https://leetcode.com/api/problems/all/'));

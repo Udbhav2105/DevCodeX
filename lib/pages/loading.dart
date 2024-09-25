@@ -33,23 +33,13 @@ class _LoadingState extends State<Loading> {
     // await instance.lcAuthenticate();
     //   await instance.fetchProblemCount();
       await instance.getData();
-      instance.lcAuth = true;
     print('Lc Auth: ${instance.lcAuth}\n Cf Auth ${codeforcesData.cfAuth}');
     if (!instance.lcAuth && !codeforcesData.cfAuth) {
       Navigator.pushNamed(context, '/');
     } else if (instance.lcAuth && !codeforcesData.cfAuth) {
       Navigator.pushReplacementNamed(context, '/home', arguments: {
-        'lcTotal': instance.problemCount.totalAcCount,
-        'lcEasy': instance.problemCount.totalEasySubmittedCount,
-        'lcMedium': instance.problemCount.totalMediumSubmittedCount,
-        'lcHard': instance.problemCount.totalHardSubmittedCount,
-        'lcUsername': lcUsername,
-        'lcAvatar': instance.userInfo.username,
-        'totalEasy': instance.easyCtn,
-        'totalMedium': instance.mediumCtn,
-        'totalHard': instance.hardCtn,
-        'lcAuth': instance.lcAuth,
         'cfAuth': codeforcesData.cfAuth,
+        'lcData' : instance
       });
     } else if (!instance.lcAuth && codeforcesData.cfAuth) {
       Navigator.pushReplacementNamed(context, '/home', arguments: {
@@ -66,21 +56,13 @@ class _LoadingState extends State<Loading> {
         'cfHard': codeforcesData.hardSolved,
         'cfExtreme': codeforcesData.extremeSolved,
         'cfUnrated': codeforcesData.unratedSolved,
-        'lcAuth': instance.lcAuth,
+        'lcData': instance,
       });
     } else {
       // Pass both Leetcode and Codeforces data to the next page
-      Navigator.pushReplacementNamed(context, '/home', arguments: {
-        'lcTotal': instance.problemCount.totalAcCount,
-        'lcEasy': instance.problemCount.totalEasySubmittedCount,
-        'lcMedium': instance.problemCount.totalMediumSubmittedCount,
-        'lcHard': instance.problemCount.totalHardSubmittedCount,
-        'lcUsername': lcUsername,
-        'lcAvatar': instance.userInfo.username,
-        'totalEasy': instance.easyCtn,
-        'totalMedium': instance.mediumCtn,
-        'totalHard': instance.hardCtn,
-        'lcAuth': instance.lcAuth,
+      Navigator.pushNamed(context, '/home', arguments: {
+        // 'lcTotal': i
+        'lcData':instance,
         // Codeforces Data :-
         'cfAuth': codeforcesData.cfAuth,
         'cfUsername': cfUsername,
