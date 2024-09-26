@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ripoff/components/username_avatar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class Codeforces extends StatefulWidget {
   const Codeforces({super.key});
@@ -28,11 +26,16 @@ class CodeforcesState extends State<Codeforces> {
 
     // Prepare chart data
     chartData = [
-      ChartData('Easy (800-1300)', d['cfEasy'] ?? 0),
-      ChartData('Medium (1301-1900)', d['cfMedium'] ?? 0),
-      ChartData('Hard (1901-2600)', d['cfHard'] ?? 0),
-      ChartData('Extreme (2601-3500)', d['cfExtreme'] ?? 0),
-      ChartData('Unrated', d['cfUnrated'] ?? 0),
+      // ChartData('Easy (800-1300)', d['cfEasy'] ?? 0),
+      // ChartData('Medium (1301-1900)', d['cfMedium'] ?? 0),
+      // ChartData('Hard (1901-2600)', d['cfHard'] ?? 0),
+      // ChartData('Extreme (2601-3500)', d['cfExtreme'] ?? 0),
+      // ChartData('Unrated', d['cfUnrated'] ?? 0),
+      ChartData('Easy (800-1300)', d['cfData'].easySolved ?? 0),
+      ChartData('Medium (1301-1900)', d['cfData'].mediumSolved?? 0),
+      ChartData('Hard (1901-2600)', d['cfData'].hardSolved ?? 0),
+      ChartData('Extreme (2601-3500)', d['cfData'].extremeSolved?? 0),
+      ChartData('Unrated', d['cfData'].unratedSolved ?? 0),
     ];
 
     return Scaffold(
@@ -43,13 +46,13 @@ class CodeforcesState extends State<Codeforces> {
           children: [
             SafeArea(
               child: AvatarUsername(
-                user: d['cfUsername'] ?? 'User',
-                avatar: d['cfAvatar'] ?? 'default_avatar_url', // Replace with your default avatar URL
+                user: d['cfData'].username ?? 'User',
+                avatar: d['cfData'].avatar ?? 'default_avatar_url', // Replace with your default avatar URL
               ),
             ),
             const SizedBox(height: 20),
             Text(
-              '${d['cfUsername'] ?? 'Unknown User'}',
+              '${d['cfData'].username ?? 'Unknown User'}',
               style: const TextStyle(
                 color: Color(0xFFD4AF37), // Gold color
                 fontSize: 24,
@@ -57,28 +60,28 @@ class CodeforcesState extends State<Codeforces> {
               ),
             ),
             Text(
-              'Rating: ${d['cfRating'] ?? 'N/A'}',
+              'Rating: ${d['cfData'].userRating ?? 'N/A'}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
               ),
             ),
             Text(
-              'Max Rating: ${d['cfMaxRating'] ?? 'N/A'}',
+              'Max Rating: ${d['cfData'].maxRating ?? 'N/A'}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
               ),
             ),
             Text(
-              'Rank: ${d['cfRank'] ?? 'N/A'}',
+              'Rank: ${d['cfData'].rank ?? 'N/A'}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
               ),
             ),
             Text(
-              'Max Rank: ${d['cfMaxRank'] ?? 'N/A'}',
+              'Max Rank: ${d['cfData'].maxRank ?? 'N/A'}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
