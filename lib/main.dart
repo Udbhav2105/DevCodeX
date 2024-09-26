@@ -5,7 +5,6 @@ import 'package:ripoff/pages/loading.dart';
 import 'package:ripoff/pages/home.dart';
 import 'package:ripoff/pages/codeforces_page.dart';
 
-import 'package:ripoff/pages/choice.dart';
 void main() => runApp(MaterialApp(
   // home: Choice(); correct user id?
   initialRoute: '/',
