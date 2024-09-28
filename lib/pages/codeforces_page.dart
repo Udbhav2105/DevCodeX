@@ -29,11 +29,11 @@ class CodeforcesState extends State<Codeforces> {
 
     // Prepare chart data
     chartDataCF = [
-      ChartDataCF('Easy (800-1300)', d['cfData'].easySolved ?? 0),
-      ChartDataCF('Medium (1301-1900)', d['cfData'].mediumSolved?? 0),
-      ChartDataCF('Hard (1901-2600)', d['cfData'].hardSolved ?? 0),
-      ChartDataCF('Extreme (2601-3500)', d['cfData'].extremeSolved?? 0),
-      ChartDataCF('Unrated', d['cfData'].unratedSolved ?? 0),
+      ChartDataCF('Easy (800-1300)', d['cfData'].easySolved ?? 0, Colors.green[300]!),
+      ChartDataCF('Medium (1301-1900)', d['cfData'].mediumSolved ?? 0, Colors.orange),
+      ChartDataCF('Hard (1901-2600)', d['cfData'].hardSolved ?? 0, Colors.red),
+      ChartDataCF('Extreme (2601-3500)', d['cfData'].extremeSolved?? 0, Colors.purple),
+      ChartDataCF('Unrated', d['cfData'].unratedSolved ?? 0, Colors.deepPurple),
     ];
 
     // return Scaffold(
