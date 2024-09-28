@@ -61,7 +61,7 @@ class _LoadingState extends State<Loading> {
       });
     } else {
       // Pass both Leetcode and Codeforces data to the next page
-      Navigator.pushNamed(context, '/home', arguments: {
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
         // 'lcTotal': i
         'lcData':instance,
         // Codeforces Data :-
