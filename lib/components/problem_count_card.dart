@@ -72,7 +72,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
         // color: Colors.pink,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xFFf6fed1),
+            color: Color(0xFFf6fed1).withOpacity(0.7),
           ),
           borderRadius: BorderRadius.circular(14),
         ),
