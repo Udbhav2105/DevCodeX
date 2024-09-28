@@ -7,7 +7,38 @@ class BadgesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> data = [];
     int len = badges.length; // Get the length of badges
+    if (len != 0){
+      data.add(
+          SizedBox(
+            height: 80,
+            child: ListView.builder(
+              scrollDirection:
+              Axis.horizontal,
+              itemCount: badges.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: Image.network(
+                    badges[index],
+                    height: 80,
+                    width: 80,
+                  ),
+                );
+              },
+            ),
+          ));
+    }
+    else{
+      data.add(
+      Text('--No Badge--',
+      style: TextStyle(
+        // fontSize: 5,
+        color: Color(0xFFf6fed1).withOpacity(0.7),
+      ),));
+    }
+    print(len);
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -36,28 +67,9 @@ class BadgesCard extends StatelessWidget {
                 ),
                 // Use Expanded to ensure proper height management
                 SizedBox(height: 20,),
-                badges != []
-                    ? SizedBox(
-                        height: 80, // Set a specific height for the ListView
-                        child: ListView.builder(
-                          scrollDirection:
-                              Axis.horizontal, // Set horizontal scroll
-                          itemCount: badges.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(6),
-                              child: Image.network(
-                                badges[index],
-                                height: 80,
-                                width: 80,
-                              ),
-                            );
-                          },
-                        ),
-                      )
-                    : SizedBox(height: 0),
-              ],
-            ),
+                ...data,
+      ],
+      )
           ),
         ),
       ),

@@ -6,8 +6,10 @@ class RadialBarChart extends StatelessWidget {
   final int easy;
   final int medium;
   final int hard;
-
-  RadialBarChart(this.easy, this.medium, this.hard);
+  final int totalEasy;
+  final int totalMedium;
+  final int totalHard;
+  RadialBarChart(this.easy, this.medium, this.hard, this.totalEasy, this.totalMedium, this.totalHard);
 
   String? extremeCountOneName;
 
@@ -23,16 +25,16 @@ class RadialBarChart extends StatelessWidget {
       ChartData(
         "Hard",
         hard.toDouble(),
-        826,
+        totalHard.toDouble(),
         Colors.red,
       ),
       ChartData(
         'Medium',
         medium.toDouble(),
-        1726,
+        totalMedium.toDouble(),
         Colors.orange,
       ),
-      ChartData('Easy', easy.toDouble(), 826, Colors.green[300]!),
+      ChartData('Easy', easy.toDouble(), totalEasy.toDouble(), Colors.green[300]!),
     ];
 
     return Container(
