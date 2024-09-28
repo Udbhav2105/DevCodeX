@@ -5,6 +5,7 @@ import 'dart:convert';
 // import 'package:ripoff/services/user.dart';
 // import 'package:leetcode_api_dart/leetcode_api_dart.dart';
 // import 'package:leetcode_api_dart/models/problem.dart';
+import 'package:http/http.dart';
 import 'package:leetcode_unofficial_api/apis.dart';
 
 import 'package:leetcode_unofficial_api/apis.dart';
@@ -26,14 +27,14 @@ class Lc {
   int totalAcEasy = 0;
   int totalAcMedium = 0;
   int totalAcHard = 0;
-  dynamic lcAvatar =   'https://assets.leetcode.com/users/default_avatar.jpg';
+  dynamic lcAvatar = 'https://assets.leetcode.com/users/default_avatar.jpg';
   late String daily;
   late dynamic userInfo;
   late dynamic problemCount;
   late dynamic questions;
   late bool lcAuth = false;
   List<String>? badgeUrls = [];
-
+  late Map<String,dynamic> lcContest = {};
   Lc({required this.lcUsername});
 
   // Future<void> lcAuthenticate() async {
@@ -112,6 +113,52 @@ class Lc {
           hardCtn++;
         }
       }
+
+      const String graphqlUrl = 'https://leetcode.com/graphql';
+      final Map<String, dynamic> payload = {
+        "query": """
+        query getUserContestRanking(\$username: String!) {
+          userContestRanking(username: \$username) {
+            attendedContestsCount
+            rating
+            globalRanking
+            totalParticipants
+            topPercentage
+            badge {
+              name
+            }
+          }
+        }
+      """,
+        "variables": {
+          "username": lcUsername
+        }
+      };
+
+      // Make the HTTP request for user contest ranking
+      final constresponse = await http.post(
+        Uri.parse(graphqlUrl),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(payload),
+      );
+
+      if (constresponse.statusCode == 200) {
+        final Map<String, dynamic> jsonResponse = json.decode(constresponse.body);
+        final contestRanking = jsonResponse['data']['userContestRanking'];
+
+        // Parsing the contest ranking data
+        lcContest['Attended Contests:'] = contestRanking['attendedContestsCount'];
+        lcContest['Rating: '] = contestRanking['rating'];
+        lcContest['Global Ranking: '] = contestRanking['globalRanking'];
+        lcContest['Top Percentage: '] = contestRanking['topPercentage'];
+        print('contest data');
+        print(lcContest);
+      }
+      else{
+        print('tthere error is in contest data');
+      }
       // print('received graph data');
       lcAuth = true;
     } catch (e) {
@@ -120,10 +167,13 @@ class Lc {
     }
   }
 
-  Future<void> getAllProblems() async {
-    final String graphqlUrl = 'https://leetcode.com/graphql';
-    final Map<String, dynamic> payload = {
-      "query": """
+  Future<void> fetchUserContestRanking() async {
+  }
+
+Future<void> getAllProblems() async {
+  final String graphqlUrl = 'https://leetcode.com/graphql';
+  final Map<String, dynamic> payload = {
+    "query": """
         query problemsetQuestionList(\$categorySlug: String, \$limit: Int, \$skip: Int, \$filters: QuestionListFilterInput) {
           problemsetQuestionList: questionList(
             categorySlug: \$categorySlug
@@ -153,30 +203,29 @@ class Lc {
           }
         }
       """,
-      "variables": {
-        "categorySlug": "all-code-essentials",
-        "limit": 50,
-        "skip": 0,
-        "filters": {}
-      }
-    };
-
-    // Make the HTTP request
-    final response = await http.post(
-      Uri.parse(graphqlUrl),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json.encode(payload),
-    );
-
-    // Handle the response
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> jsonResponse = json.decode(response.body);
-      questions = jsonResponse['data']; // Store the response in data
-    } else {
-      print('Request failed with status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+    "variables": {
+      "categorySlug": "all-code-essentials",
+      "limit": 50,
+      "skip": 0,
+      "filters": {}
     }
+  };
+
+  // Make the HTTP request
+  final response = await http.post(
+    Uri.parse(graphqlUrl),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: json.encode(payload),
+  );
+
+  // Handle the response
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> jsonResponse = json.decode(response.body);
+    questions = jsonResponse['data']; // Store the response in data
+  } else {
+    print('Request failed with status: ${response.statusCode}');
+    print('Response body: ${response.body}');
   }
-}
+}}
