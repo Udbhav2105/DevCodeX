@@ -6,37 +6,42 @@ import 'package:DevCodeX/components/username_avatar.dart';
 import 'package:DevCodeX/components/radial_bargraph.dart';
 
 class LeetcodePage extends StatelessWidget {
-   LeetcodePage({super.key});
+  LeetcodePage({super.key});
 
-  Map<String,dynamic>d = {};
+  Map<String, dynamic> d = {};
 
-  // void setUpLeetcodePage(){
   @override
   Widget build(BuildContext context) {
-    d = ModalRoute.of(context)?.settings.arguments as Map<String,dynamic>;
+    d = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: const Color(0xFF161616),
       body: SingleChildScrollView(
         child: Column(
-            children: [
-              SafeArea(
-                child: AvatarUsername(
-                  user: d['lcData'].lcUsername,
-                  avatar: d['lcData'].lcAvatar,
-                ),
+          children: [
+            SafeArea(
+              child: AvatarUsername(
+                user: d['lcData'].lcUsername,
+                avatar: d['lcData'].lcAvatar,
               ),
-              ProblemCountCard(
-                chart: RadialBarChart(d['lcData'].totalAcEasy, d['lcData'].totalAcMedium,d['lcData'].totalAcHard),
-                totalProblems: d['lcData'].totalProblemCount,
-                easyCount: d['lcData'].totalAcEasy,
-                mediumCount: d['lcData'].totalAcMedium,
-                hardCount: d['lcData'].totalAcHard,
-              ),
-              BadgesCard(d['lcData'].badgeUrls),
-              ContestCard(contestData:d['lcData'].lcContest),
-            ],
-          ),
+            ),
+            ProblemCountCard(
+              chart: RadialBarChart(
+                  d['lcData'].totalAcEasy,
+                  d['lcData'].totalAcMedium,
+                  d['lcData'].totalAcHard,
+                  d['lcData'].easyCtn,
+                  d['lcData'].mediumCtn,
+                  d['lcData'].hardCtn),
+              totalProblems: d['lcData'].totalProblemCount,
+              easyCount: d['lcData'].totalAcEasy,
+              mediumCount: d['lcData'].totalAcMedium,
+              hardCount: d['lcData'].totalAcHard,
+            ),
+            BadgesCard(d['lcData'].badgeUrls),
+            ContestCard(contestData: d['lcData'].lcContest),
+          ],
+        ),
       ),
-      );
+    );
   }
 }

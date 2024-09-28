@@ -34,7 +34,8 @@ class Lc {
   late dynamic questions;
   late bool lcAuth = false;
   List<String>? badgeUrls = [];
-  late Map<String,dynamic> lcContest = {};
+  late Map<String, dynamic> lcContest = {};
+
   Lc({required this.lcUsername});
 
   // Future<void> lcAuthenticate() async {
@@ -72,51 +73,66 @@ class Lc {
   // }
 
   Future<void> getData() async {
-    try {
-      await LeetCodeAPI.initializeApp(lcUsername);
-      print('initializing>....');
-      final userData = await LeetCodeAPI.instance.userData();
-      final dailyProblem = await LeetCodeAPI.instance.dailyProblem();
-      final solvedProblemCount =
-      await LeetCodeAPI.instance.solvedProblemCount();
-      final userBadges = await LeetCodeAPI.instance.userBadges();
+    await LeetCodeAPI.initializeApp(lcUsername);
+    print('initializing>....');
+    final userData = await LeetCodeAPI.instance.userData();
+    final dailyProblem = await LeetCodeAPI.instance.dailyProblem();
+    final solvedProblemCount = await LeetCodeAPI.instance.solvedProblemCount();
+    final userBadges = await LeetCodeAPI.instance.userBadges();
 
-      badgeUrls = userBadges?.badges.map((badge) {
-        if (badge.icon != null && badge.icon.startsWith('/static')) {
-          return 'https://leetcode.com${badge.icon}';
-        } else {
-          return badge.icon ?? ''; // Return icon or an empty string
-        }
-      }).toList();
-      print('Badge URLs: $badgeUrls');
-      lcUsername = userData?.username;
-      totalAcEasy = solvedProblemCount!.totalEasySubmittedCount;
-      totalAcMedium = solvedProblemCount.totalMediumSubmittedCount;
-      totalAcHard = solvedProblemCount.totalHardSubmittedCount;
-      totalProblemCount = solvedProblemCount.totalAcCount;
-      lcAvatar = userData?.avatar;
-      daily = dailyProblem.content;
-      // problemCount = solvedProblemCount.;
-
-      final response =
-      await http.get(Uri.parse('https://leetcode.com/api/problems/all/'));
-      final data = jsonDecode(response.body);
-      final problem = data['stat_status_pairs'];
-
-      for (var problem in problem) {
-        final difficulty = problem['difficulty']['level'];
-        if (difficulty == 1) {
-          easyCtn++;
-        } else if (difficulty == 2) {
-          mediumCtn++;
-        } else if (difficulty == 3) {
-          hardCtn++;
-        }
+    badgeUrls = userBadges?.badges.map((badge) {
+      if (badge.icon != null && badge.icon.startsWith('/static')) {
+        return 'https://leetcode.com${badge.icon}';
+      } else {
+        return badge.icon ?? ''; // Return icon or an empty string
       }
+    }).toList();
+    print('Badge URLs: $badgeUrls');
+    lcUsername = userData?.username;
+    totalAcEasy = solvedProblemCount!.totalEasySubmittedCount;
+    totalAcMedium = solvedProblemCount.totalMediumSubmittedCount;
+    totalAcHard = solvedProblemCount.totalHardSubmittedCount;
+    totalProblemCount = solvedProblemCount.totalAcCount;
+    lcAvatar = userData?.avatar;
+    daily = dailyProblem.content;
+    // problemCount = solvedProblemCount.;
+  }
 
-      const String graphqlUrl = 'https://leetcode.com/graphql';
-      final Map<String, dynamic> payload = {
-        "query": """
+  Future<void> countTotalProblems() async {
+    final response =
+        await http.get(Uri.parse('https://leetcode.com/api/problems/all/'));
+    final data = jsonDecode(response.body);
+    final problem = data['stat_status_pairs'];
+
+    for (var problem in problem) {
+      final difficulty = problem['difficulty']['level'];
+      if (difficulty == 1) {
+        easyCtn++;
+      } else if (difficulty == 2) {
+        mediumCtn++;
+      } else if (difficulty == 3) {
+        hardCtn++;
+      }
+    }
+    // print('$easyCtn $mediumCtn $hardCtn');
+  }
+
+  Future<void> getEverything() async {
+    try {
+       await countTotalProblems();
+       await getData();
+       await fetchUserContestRanking();
+      lcAuth = true;
+    } catch (e) {
+      print('error is: $e');
+      lcAuth = false;
+    }
+  }
+
+  Future<void> fetchUserContestRanking() async {
+    const String graphqlUrl = 'https://leetcode.com/graphql';
+    final Map<String, dynamic> payload = {
+      "query": """
         query getUserContestRanking(\$username: String!) {
           userContestRanking(username: \$username) {
             attendedContestsCount
@@ -130,50 +146,48 @@ class Lc {
           }
         }
       """,
-        "variables": {
-          "username": lcUsername
-        }
-      };
+      "variables": {"username": lcUsername}
+    };
 
-      // Make the HTTP request for user contest ranking
-      final constresponse = await http.post(
-        Uri.parse(graphqlUrl),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: json.encode(payload),
-      );
+    // Make the HTTP request for user contest ranking
+    final constresponse = await http.post(
+      Uri.parse(graphqlUrl),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode(payload),
+    );
 
-      if (constresponse.statusCode == 200) {
-        final Map<String, dynamic> jsonResponse = json.decode(constresponse.body);
-        final contestRanking = jsonResponse['data']['userContestRanking'];
+    if (constresponse.statusCode == 200) {
+      final Map<String, dynamic> jsonResponse = json.decode(constresponse.body);
+      final contestRanking = jsonResponse['data']['userContestRanking'];
 
-        // Parsing the contest ranking data
-        lcContest['Attended Contests:'] = contestRanking['attendedContestsCount'];
-        lcContest['Rating: '] = contestRanking['rating'].toStringAsFixed(2);
-        lcContest['Global Ranking: '] = contestRanking['globalRanking'];
-        lcContest['Top Percentage: '] = contestRanking['topPercentage'];
-        print('contest data');
-        print(lcContest);
+      // Parsing the contest ranking data
+      if (contestRanking != null) {
+        lcContest['Attended Contests:'] =
+            contestRanking['attendedContestsCount'];
+        lcContest['Rating: '] =
+            contestRanking['rating']?.toStringAsFixed(2) ?? 'N/A';
+        lcContest['Global Ranking: '] =
+            contestRanking['globalRanking'] ?? 'N/A';
+        lcContest['Top Percentage: '] =
+            contestRanking['topPercentage'] ?? 'N/A';
+      } else {
+        // Handle the case where the user hasn't attended any contests
+        lcContest['Attended Contests:'] = 0;
+        lcContest['Rating: '] = 'N/A';
+        lcContest['Global Ranking: '] = 'N/A';
+        lcContest['Top Percentage: '] = 'N/A';
+        print('No contest data available for this user.');
       }
-      else{
-        print('tthere error is in contest data');
-      }
-      // print('received graph data');
-      lcAuth = true;
-    } catch (e) {
-      print('Error encountered: $e');
-      lcAuth = false;
+      // print(lcContest);
     }
   }
 
-  Future<void> fetchUserContestRanking() async {
-  }
-
-Future<void> getAllProblems() async {
-  final String graphqlUrl = 'https://leetcode.com/graphql';
-  final Map<String, dynamic> payload = {
-    "query": """
+  Future<void> getAllProblems() async {
+    final String graphqlUrl = 'https://leetcode.com/graphql';
+    final Map<String, dynamic> payload = {
+      "query": """
         query problemsetQuestionList(\$categorySlug: String, \$limit: Int, \$skip: Int, \$filters: QuestionListFilterInput) {
           problemsetQuestionList: questionList(
             categorySlug: \$categorySlug
@@ -203,29 +217,30 @@ Future<void> getAllProblems() async {
           }
         }
       """,
-    "variables": {
-      "categorySlug": "all-code-essentials",
-      "limit": 50,
-      "skip": 0,
-      "filters": {}
+      "variables": {
+        "categorySlug": "all-code-essentials",
+        "limit": 50,
+        "skip": 0,
+        "filters": {}
+      }
+    };
+
+    // Make the HTTP request
+    final response = await http.post(
+      Uri.parse(graphqlUrl),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode(payload),
+    );
+
+    // Handle the response
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      questions = jsonResponse['data']; // Store the response in data
+    } else {
+      print('Request failed with status: ${response.statusCode}');
+      print('Response body: ${response.body}');
     }
-  };
-
-  // Make the HTTP request
-  final response = await http.post(
-    Uri.parse(graphqlUrl),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: json.encode(payload),
-  );
-
-  // Handle the response
-  if (response.statusCode == 200) {
-    final Map<String, dynamic> jsonResponse = json.decode(response.body);
-    questions = jsonResponse['data']; // Store the response in data
-  } else {
-    print('Request failed with status: ${response.statusCode}');
-    print('Response body: ${response.body}');
   }
-}}
+}
