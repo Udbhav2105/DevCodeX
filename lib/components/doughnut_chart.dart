@@ -27,6 +27,7 @@ class _DoughnutChartState extends State<DoughnutChart> {
       series: <CircularSeries<ChartDataCF, String>>[
       DoughnutSeries<ChartDataCF, String>(
       dataSource: widget.chartData,
+      pointColorMapper: (ChartDataCF data, _) => data.color,
       xValueMapper: (ChartDataCF data, _) => data.x,
       yValueMapper: (ChartDataCF data, _) => data.y,
       dataLabelSettings: const DataLabelSettings(isVisible: true),
