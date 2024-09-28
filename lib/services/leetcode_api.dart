@@ -150,7 +150,7 @@ class Lc {
 
         // Parsing the contest ranking data
         lcContest['Attended Contests:'] = contestRanking['attendedContestsCount'];
-        lcContest['Rating: '] = contestRanking['rating'];
+        lcContest['Rating: '] = contestRanking['rating'].toStringAsFixed(2);
         lcContest['Global Ranking: '] = contestRanking['globalRanking'];
         lcContest['Top Percentage: '] = contestRanking['topPercentage'];
         print('contest data');
