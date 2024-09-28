@@ -11,7 +11,7 @@ class ContestCard extends StatelessWidget {
       // color: Colors.pink,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xFFf6fed1).withOpacity(0.7),
+          color: Color(0xFFf6fed1).withOpacity(0.5),
         ),
         borderRadius: BorderRadius.circular(14),
       ),
@@ -47,8 +47,8 @@ class ContestCard extends StatelessWidget {
                       children: [
                         Text(
                           key,
-                          style: const TextStyle(
-                            color: Color(0xFFf6fed1),
+                          style: TextStyle(
+                            color: const Color(0xFFf6fed1).withOpacity(0.8),
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -57,9 +57,10 @@ class ContestCard extends StatelessWidget {
                           child: Text(
                             value,
                             textAlign: TextAlign.right,
-                            style: const TextStyle(
-                              color: Colors.white70,
+                            style: TextStyle(
+                              color: const Color(0xFFf6fed1).withOpacity(0.8),
                               fontSize: 14,
+                              letterSpacing: 1.4,
                             ),
                           ),
                         ),
