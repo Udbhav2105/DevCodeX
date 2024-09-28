@@ -10,6 +10,7 @@ class ProblemCountCard extends StatefulWidget {
   String? extremeCountTwoName;
   int? extremeCount1;
   int? extremeCount2;
+  final Widget chart;
 
   ProblemCountCard(
       {required this.totalProblems,
@@ -20,6 +21,7 @@ class ProblemCountCard extends StatefulWidget {
       this.extremeCount1,
       this.extremeCountTwoName,
       this.extremeCount2,
+      required this.chart,
       super.key});
 
   @override
@@ -36,7 +38,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
       ));
       extremeText.add(
         Text(
-          '${widget.extremeCountOneName?.toUpperCase()}  ${widget.extremeCount1}',
+          '${widget.extremeCountOneName}: ${widget.extremeCount1}',
           style: TextStyle(
             color: Colors.purple,
             fontSize: 16,
@@ -51,7 +53,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
       ));
       extremeText.add(
         Text(
-          '${widget.extremeCountTwoName?.toUpperCase()} ${widget.extremeCount2}',
+          '${widget.extremeCountTwoName}: ${widget.extremeCount2}',
           style: TextStyle(
             color: Colors.deepPurple,
             fontSize: 16,
@@ -104,7 +106,8 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
                     SizedBox(
                       height: 30,
                     ),
-                    RadialBarChart(widget.easyCount,widget.mediumCount,widget.hardCount),
+                    // RadialBarChart(widget.easyCount,widget.mediumCount,widget.hardCount),
+                    widget.chart,
                     SizedBox(
                       width: 16,
                     ),
@@ -112,7 +115,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Easy ${widget.easyCount}",
+                          "Easy: ${widget.easyCount}",
                           style: TextStyle(
                             color: Colors.green[300],
                             fontSize: 16,
@@ -123,7 +126,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
                           height: 20,
                         ),
                         Text(
-                          "Medium ${widget.mediumCount}",
+                          "Medium: ${widget.mediumCount}",
                           style: TextStyle(
                             color: Colors.orange,
                             fontSize: 16,
@@ -134,7 +137,7 @@ class _ProblemCountCardState extends State<ProblemCountCard> {
                           height: 20,
                         ),
                         Text(
-                          "Hard ${widget.hardCount}",
+                          "Hard: ${widget.hardCount}",
                           style: TextStyle(
                             color: Colors.red,
                             fontSize: 16,
