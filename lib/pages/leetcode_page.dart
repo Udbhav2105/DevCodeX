@@ -38,14 +38,10 @@ class _LeetcodePageState extends State<LeetcodePage> {
               ),
             ),
             ProblemCountCard(
-              // why this taking
-              // totalProblems: d['lcTotal'],
+              chart: RadialBarChart(d['lcData'].totalAcEasy, d['lcData'].totalAcMedium,d['lcData'].totalAcHard),
               totalProblems: d['lcData'].totalProblemCount,
-              // easyCount: d['lcEasy'],
               easyCount: d['lcData'].totalAcEasy,
-              // mediumCount: d['lcMedium'],
               mediumCount: d['lcData'].totalAcMedium,
-              // hardCount: d['lcHard'],
               hardCount: d['lcData'].totalAcHard,
             ),
             BadgesCard(d['lcData'].badgeUrls),
