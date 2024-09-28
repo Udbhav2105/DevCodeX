@@ -6,6 +6,7 @@ import 'package:ripoff/pages/home.dart';
 import 'package:ripoff/pages/codeforces_page.dart';
 
 void main() => runApp(MaterialApp(
+  debugShowCheckedModeBanner: false,
   initialRoute: '/',
   routes: {
     '/':(context) => const Login(),
