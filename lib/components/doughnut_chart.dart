@@ -1,4 +1,4 @@
-import 'package:ripoff/services/chart_data_cf.dart';
+import 'package:DevCodeX/services/chart_data_cf.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

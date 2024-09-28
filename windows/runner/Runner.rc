@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "ripoff" "\0"
+            VALUE "FileDescription", "DevCodeX" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ripoff" "\0"
+            VALUE "InternalName", "DevCodeX" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ripoff.exe" "\0"
-            VALUE "ProductName", "ripoff" "\0"
+            VALUE "OriginalFilename", "DevCodeX.exe" "\0"
+            VALUE "ProductName", "DevCodeX" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

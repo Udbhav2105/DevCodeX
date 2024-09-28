@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ripoff/components/contest_data.dart';
-import 'package:ripoff/components/lc_badges_card.dart';
-import 'package:ripoff/components/problem_count_card.dart';
-import 'package:ripoff/components/username_avatar.dart';
-import 'package:ripoff/components/radial_bargraph.dart';
+import 'package:DevCodeX/components/contest_data.dart';
+import 'package:DevCodeX/components/lc_badges_card.dart';
+import 'package:DevCodeX/components/problem_count_card.dart';
+import 'package:DevCodeX/components/username_avatar.dart';
+import 'package:DevCodeX/components/radial_bargraph.dart';
 
-class LeetcodePage extends StatefulWidget {
-  const LeetcodePage({super.key});
+class LeetcodePage extends StatelessWidget {
+   LeetcodePage({super.key});
 
-  @override
-  State<LeetcodePage> createState() => _LeetcodePageState();
-}
-
-class _LeetcodePageState extends State<LeetcodePage> {
   Map<String,dynamic>d = {};
-  // void setUpLeetcodePage(){
 
-  // }
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   Future.delayed(Duration.zero,(){
-  //     setUpLeetcodePage();
-  //   });
-  //
-  // }
+  // void setUpLeetcodePage(){
   @override
   Widget build(BuildContext context) {
     d = ModalRoute.of(context)?.settings.arguments as Map<String,dynamic>;

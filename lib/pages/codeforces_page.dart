@@ -1,9 +1,9 @@
-import 'package:ripoff/components/contest_data.dart';
+import 'package:DevCodeX/components/contest_data.dart';
 import 'package:flutter/material.dart';
-import 'package:ripoff/components/doughnut_chart.dart';
-import 'package:ripoff/components/problem_count_card.dart';
-import 'package:ripoff/components/username_avatar.dart';
-import 'package:ripoff/services/chart_data_cf.dart';
+import 'package:DevCodeX/components/doughnut_chart.dart';
+import 'package:DevCodeX/components/problem_count_card.dart';
+import 'package:DevCodeX/components/username_avatar.dart';
+import 'package:DevCodeX/services/chart_data_cf.dart';
 
 class Codeforces extends StatefulWidget {
   const Codeforces({super.key});

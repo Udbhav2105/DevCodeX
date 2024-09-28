@@ -2,7 +2,7 @@
     <!-- Required to fetch data from the internet. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="ripoff"
+        android:label="DevCodeX"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:ripoff/services/chart_data.dart';
+import 'package:DevCodeX/services/chart_data.dart';
 
-class RadialBarChart extends StatefulWidget {
+class RadialBarChart extends StatelessWidget {
   final int easy;
   final int medium;
   final int hard;
 
   RadialBarChart(this.easy, this.medium, this.hard);
 
-  @override
-  State<RadialBarChart> createState() => _RadialBarChartState();
-}
-
-class _RadialBarChartState extends State<RadialBarChart> {
   String? extremeCountOneName;
 
   String? extremeCountTwoName;
@@ -27,17 +22,17 @@ class _RadialBarChartState extends State<RadialBarChart> {
     List<ChartData> chartData = [
       ChartData(
         "Hard",
-        widget.hard.toDouble(),
+        hard.toDouble(),
         826,
         Colors.red,
       ),
       ChartData(
         'Medium',
-        widget.medium.toDouble(),
+        medium.toDouble(),
         1726,
         Colors.orange,
       ),
-      ChartData('Easy', widget.easy.toDouble(), 826, Colors.green[300]!),
+      ChartData('Easy', easy.toDouble(), 826, Colors.green[300]!),
     ];
 
     return Container(
@@ -67,4 +62,6 @@ class _RadialBarChartState extends State<RadialBarChart> {
       ),
     );
   }
-}//
+}
+
+//

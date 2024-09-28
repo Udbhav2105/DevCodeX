@@ -2,7 +2,7 @@ import 'dart:convert';
 
 // import 'package:leetcode_unofficial_api/models/submit_stats.dart';
 // import 'package:leetcode_unofficial_api/models/user_data.dart';
-// import 'package:ripoff/services/user.dart';
+// import 'package:DevCodeX/services/user.dart';
 // import 'package:leetcode_api_dart/leetcode_api_dart.dart';
 // import 'package:leetcode_api_dart/models/problem.dart';
 import 'package:http/http.dart';
