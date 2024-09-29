@@ -1,16 +1,43 @@
-# DevCodeX
+# 🎉 DevCodeX: A Coding Portfolio Viewer
 
-A new Flutter project.
+Welcome to **DevCodeX**, a Flutter-based application designed to showcase your coding achievements and online profiles from popular competitive programming platforms. While many such projects exist, DevCodeX aims to provide a simple and intuitive way to view your coding statistics on platforms like Codeforces, Leetcode and GeeksForGeeks.
 
-## Getting Started
+> **Note:** This project is a Work in Progress (WIP). 🚧 Features and functionalities are continually being developed, and we welcome contributions!
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- **User-Friendly Interface:** Easily input your usernames for Codeforces, LeetCode and GeeksForGeeks to see your coding stats. 🖥️
+- **Profile Pages:** View detailed profiles including problems solved, contests participated in, and more. 📊
+- **Responsive Design:** Optimized for both mobile and tablet devices. 📱💻
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ⚙️ Getting Started
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 📋 Prerequisites
+
+- Flutter SDK
+
+### 📥 Installation
+
+1.Clone the repository:
+
+```bash
+git clone https://github.com/Udbhav2105/DevCodeX
+```
+
+2.Navigate to the project directory:
+
+```bash
+cd DevCodeX
+```
+
+3.Get the dependencies:
+
+```bash
+flutter pub get
+```
+
+ 4.Run the application:
+
+ ```bash
+ flutter run
+ ```
