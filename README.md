@@ -41,3 +41,5 @@ flutter pub get
  ```bash
  flutter run
  ```
+
+Special thanks to [this repository](https://github.com/arnoob16/GeeksForGeeksAPI) for providing the API for GeeksForGeeks
