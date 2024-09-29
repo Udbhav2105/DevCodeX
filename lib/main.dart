@@ -1,3 +1,4 @@
+import 'package:DevCodeX/pages/geeksforgeeks_page.dart';
 import 'package:flutter/material.dart';
 import 'package:DevCodeX/pages/leetcode_page.dart';
 import 'package:DevCodeX/pages/login.dart';
@@ -14,5 +15,6 @@ void main() => runApp(MaterialApp(
     '/home': (context) =>  Home(),
     '/leetcodePage':(context) =>  LeetcodePage(),
     '/codeforcesPage' :(context) => const Codeforces(),
+    '/geeksforgeeksPage' :(context) => const Geeksforgeeks(),
   },
 ));

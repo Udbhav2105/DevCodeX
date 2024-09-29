@@ -9,7 +9,7 @@ class CfData {
   String rank = "newbie";
   String maxRank = "newbie";
   int easySolved = 0;
-  int mediumSolved = 0;
+  int mediumSolved = 0  ;
   int hardSolved = 0;
   int extremeSolved = 0;
   int unratedSolved = 0;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatelessWidget {
-   Home({super.key});
+  Home({super.key});
 
   Map<String, dynamic> data = {};
 
@@ -74,8 +75,55 @@ class Home extends StatelessWidget {
       cfOrLc.add(SizedBox(height: 30));
     }
 
+    // GeeksForGeeks Button with custom logo as a card
+    if (data['gfgData'] != null && data['gfgData'].gfgAuth) {
+      cfOrLc.add(
+        SizedBox(
+          width: cardWidth,
+          height: cardHeight,
+          child: Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12), // Rounded corners
+              border: Border.all(
+                color: Color(0xFFf6fed1).withOpacity(0.5),
+              ),
+            ),
+            child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff161616),
+                // Button background color
+                foregroundColor: Colors.white,
+                // Icon and text color
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                // Padding inside the button
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(12), // Button's rounded corners
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/geeksforgeeksPage',
+                    arguments: data);
+              },
+              icon: SvgPicture.network(
+                'https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg',
+                // GeeksForGeeks logo URL
+                height: 60, // Larger size for card-like appearance
+                width: 60,
+              ),
+              label: Text(
+                "GFG",
+                style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     // Codeforces Button with custom logo as a card
-    if (data['cfAuth'] != null && data['cfAuth']) {
+    if (data['cfData'] != null && data['cfData'].cfAuth) {
       cfOrLc.add(
         SizedBox(
           width: cardWidth,
