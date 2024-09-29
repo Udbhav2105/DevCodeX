@@ -14,9 +14,12 @@ Welcome to **DevCodeX**, a Flutter-based application designed to showcase your c
 
 ### 📋 Prerequisites
 
-- Flutter SDK
+- Flutter SDK (if not installing from apk)
 
 ### 📥 Installation
+
+Download the [APK](app-release.apk)
+or build from source
 
 1.Clone the repository:
 
