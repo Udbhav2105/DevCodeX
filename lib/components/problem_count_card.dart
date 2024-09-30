@@ -103,7 +103,7 @@ class ProblemCountCard extends StatelessWidget {
                     // RadialBarChart(widget.easyCount,widget.mediumCount,widget.hardCount),
                     chart,
                     SizedBox(
-                      width: 16,
+                      width: 12,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
