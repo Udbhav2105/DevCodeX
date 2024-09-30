@@ -18,7 +18,7 @@ Welcome to **DevCodeX**, a Flutter-based application designed to showcase your c
 
 ### 📥 Installation
 
-Download the [APK](app-release.apk)
+Download the [app-release.apk](https://github.com/Udbhav2105/DevCodeX/releases/tag/Beta)
 or build from source
 
 1.Clone the repository:
