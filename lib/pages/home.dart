@@ -8,11 +8,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Safe null check for ModalRoute and its arguments
     final routeData = ModalRoute.of(context)?.settings.arguments;
 
     if (routeData == null) {
-      // Handle the case where there are no arguments (maybe show a loading screen or an error)
       return Scaffold(
         backgroundColor: Color(0xFF161616),
         body: Center(
@@ -24,11 +22,9 @@ class Home extends StatelessWidget {
     data = routeData as Map<String, dynamic>;
     List<Widget> cfOrLc = [];
 
-    // Fixed size for both LeetCode and Codeforces cards
     const cardWidth = 300.0;
     const cardHeight = 184.0;
 
-    // LeetCode Button with custom logo as a card
     if (data['lcData'] != null && data['lcData'].lcAuth) {
       cfOrLc.add(
         SizedBox(
@@ -37,7 +33,7 @@ class Home extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), // Rounded corners
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 color: Color(0xFFf6fed1).withOpacity(0.5),
               ),
@@ -45,14 +41,10 @@ class Home extends StatelessWidget {
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xff161616),
-                // Button background color
                 foregroundColor: Colors.white,
-                // Icon and text color
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                // Padding inside the button
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(12), // Button's rounded corners
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
               onPressed: () {
@@ -60,13 +52,15 @@ class Home extends StatelessWidget {
               },
               icon: Image.network(
                 'https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png',
-                // LeetCode logo URL
-                height: 60, // Larger size for card-like appearance
+                height: 60,
                 width: 60,
               ),
-              label: Text(
-                "Leetcode",
-                style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+              label: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "Leetcode",
+                  style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+                ),
               ),
             ),
           ),
@@ -75,7 +69,6 @@ class Home extends StatelessWidget {
       cfOrLc.add(SizedBox(height: 30));
     }
 
-    // GeeksForGeeks Button with custom logo as a card
     if (data['gfgData'] != null && data['gfgData'].gfgAuth) {
       cfOrLc.add(
         SizedBox(
@@ -84,7 +77,7 @@ class Home extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12), // Rounded corners
+              borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: Color(0xFFf6fed1).withOpacity(0.5),
               ),
@@ -92,14 +85,10 @@ class Home extends StatelessWidget {
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xff161616),
-                // Button background color
                 foregroundColor: Colors.white,
-                // Icon and text color
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                // Padding inside the button
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(12), // Button's rounded corners
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
               onPressed: () {
@@ -108,21 +97,23 @@ class Home extends StatelessWidget {
               },
               icon: SvgPicture.network(
                 'https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg',
-                // GeeksForGeeks logo URL
-                height: 60, // Larger size for card-like appearance
+                height: 60,
                 width: 60,
               ),
-              label: Text(
-                "GFG",
-                style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+              label: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "GFG",
+                  style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+                ),
               ),
             ),
           ),
         ),
       );
+      cfOrLc.add(SizedBox(height: 30));
     }
 
-    // Codeforces Button with custom logo as a card
     if (data['cfData'] != null && data['cfData'].cfAuth) {
       cfOrLc.add(
         SizedBox(
@@ -131,7 +122,7 @@ class Home extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12), // Rounded corners
+              borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: Color(0xFFf6fed1).withOpacity(0.5),
               ),
@@ -139,14 +130,10 @@ class Home extends StatelessWidget {
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xff161616),
-                // Button background color
                 foregroundColor: Colors.white,
-                // Icon and text color
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                // Padding inside the button
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(12), // Button's rounded corners
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
               onPressed: () {
@@ -155,13 +142,15 @@ class Home extends StatelessWidget {
               },
               icon: Image.network(
                 'https://sta.codeforces.com/s/13783/images/codeforces-logo-with-telegram.png',
-                // Codeforces logo URL
-                height: 80, // Larger size for card-like appearance
-                width: 80,
+                height: 60,
+                width: 60,
               ),
-              label: Text(
-                "Codeforces",
-                style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+              label: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "Codeforces",
+                  style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+                ),
               ),
             ),
           ),
@@ -171,8 +160,9 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFF161616),
-      body:  SafeArea(
-        child: Center(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
               child: Column(
@@ -180,6 +170,7 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
+        ),
       ),
     );
   }
