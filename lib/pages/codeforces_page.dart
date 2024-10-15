@@ -4,6 +4,7 @@ import 'package:DevCodeX/components/doughnut_chart.dart';
 import 'package:DevCodeX/components/problem_count_card.dart';
 import 'package:DevCodeX/components/username_avatar.dart';
 import 'package:DevCodeX/services/chart_data_cf.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 class Codeforces extends StatefulWidget {
   const Codeforces({super.key});
@@ -38,7 +39,7 @@ class CodeforcesState extends State<Codeforces> {
     contestData = {'Max Rating': d['cfData'].maxRating, 'Max Rank': d['cfData'].maxRank, 'Current Rating': d['cfData'].userRating, 'Current Rank': d['cfData'].rank};
 
     return Scaffold(
-      backgroundColor: const Color(0xFF161616),
+      backgroundColor:  AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
             children: [

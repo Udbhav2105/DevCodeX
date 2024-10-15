@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 class AvatarUsername extends StatefulWidget {
   final String user;
@@ -25,7 +26,7 @@ class _AvatarUsernameState extends State< AvatarUsername> {
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Color(0xFFf6fed1),
+              color: AppColors.secondaryColor,
             ),
           )
         ],

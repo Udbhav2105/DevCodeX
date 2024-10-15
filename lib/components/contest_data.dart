@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:DevCodeX/services/app_color.dart';
 class ContestCard extends StatelessWidget {
   final Map<String, dynamic> contestData;
 
@@ -11,14 +11,14 @@ class ContestCard extends StatelessWidget {
       // color: Colors.pink,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xFFf6fed1).withOpacity(0.5),
+          color: AppColors.secondaryColor.withOpacity(0.5),
         ),
         borderRadius: BorderRadius.circular(14),
       ),
       margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
       child: Card(
         elevation: 0,
-        color: const Color(0xFF161616),
+        color:  AppColors.backgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -28,7 +28,7 @@ class ContestCard extends StatelessWidget {
               const Text(
                 "Contest",
                 style: TextStyle(
-                    color: Color(0xFFf6fed1),
+                    color: AppColors.secondaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
@@ -48,7 +48,7 @@ class ContestCard extends StatelessWidget {
                         Text(
                           key,
                           style: TextStyle(
-                            color: const Color(0xFFf6fed1).withOpacity(0.8),
+                            color:  AppColors.secondaryColor.withOpacity(0.8),
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -58,7 +58,7 @@ class ContestCard extends StatelessWidget {
                             value,
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: const Color(0xFFf6fed1).withOpacity(0.8),
+                              color:  AppColors.secondaryColor.withOpacity(0.8),
                               fontSize: 14,
                               letterSpacing: 1.4,
                             ),

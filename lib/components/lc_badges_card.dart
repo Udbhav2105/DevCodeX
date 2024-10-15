@@ -1,3 +1,4 @@
+import 'package:DevCodeX/services/app_color.dart';
 import 'package:flutter/material.dart';
 
 class BadgesCard extends StatelessWidget {
@@ -35,7 +36,7 @@ class BadgesCard extends StatelessWidget {
       Text('--No Badge--',
       style: TextStyle(
         // fontSize: 5,
-        color: Color(0xFFf6fed1).withOpacity(0.7),
+        color: AppColors.secondaryColor.withOpacity(0.7),
       ),));
     }
     print(len);
@@ -44,14 +45,14 @@ class BadgesCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xFFf6fed1).withOpacity(0.5),
+            color: AppColors.secondaryColor.withOpacity(0.5),
           ),
           borderRadius: BorderRadius.circular(14),
         ),
         margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
         child: Card(
           elevation: 100,
-          color: const Color(0xFF161616),
+          color:  AppColors.backgroundColor,
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
@@ -60,7 +61,7 @@ class BadgesCard extends StatelessWidget {
                 Text(
                   'Total Badges: $len',
                   style: const TextStyle(
-                    color: Color(0xFFf6fed1),
+                    color: AppColors.secondaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),

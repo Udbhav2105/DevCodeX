@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 class ProblemCountCard extends StatelessWidget {
   final int totalProblems;
@@ -28,7 +29,7 @@ class ProblemCountCard extends StatelessWidget {
     List<Widget> extremeText = [];
     if (extremeCount1 != null) {
       extremeText.add(SizedBox(
-        height: 30,
+        height: 20,
       ));
       extremeText.add(
         Text(
@@ -43,7 +44,7 @@ class ProblemCountCard extends StatelessWidget {
     }
     if (extremeCount2 != null) {
       extremeText.add(SizedBox(
-        height: 30,
+        height: 20,
       ));
       extremeText.add(
         Text(
@@ -56,7 +57,7 @@ class ProblemCountCard extends StatelessWidget {
         ),
       );
       extremeText.add(SizedBox(
-        height: 30,
+        height: 20,
       ));
     }
     return
@@ -66,7 +67,7 @@ class ProblemCountCard extends StatelessWidget {
         // color: Colors.pink,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xFFf6fed1).withOpacity(0.5),
+            color: AppColors.secondaryColor.withOpacity(0.5),
           ),
           borderRadius: BorderRadius.circular(14),
         ),
@@ -74,7 +75,7 @@ class ProblemCountCard extends StatelessWidget {
         child:
         Card(
           elevation: 100,
-          color: const Color(0xFF161616),
+          color:  AppColors.backgroundColor,
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
@@ -83,14 +84,14 @@ class ProblemCountCard extends StatelessWidget {
                 const Text(
                   "Problem Count",
                   style: TextStyle(
-                      color:  Color(0xFFf6fed1),
+                      color:  AppColors.secondaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
                 Text(
                   'Total Solved: $totalProblems',
                   style: TextStyle(
-                      color: Color(0xFff6fed1).withOpacity(0.7),
+                      color: AppColors.secondaryColor.withOpacity(0.7),
                       fontWeight: FontWeight.bold,
                       fontSize: 14),
                 ),

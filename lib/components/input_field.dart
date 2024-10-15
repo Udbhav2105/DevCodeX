@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 class InputField extends StatefulWidget {
   final String inputText;
@@ -16,7 +17,7 @@ class _InputFieldState extends State<InputField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
-      style: TextStyle(color: Color(0xFFf6fed1)),
+      style: TextStyle(color: AppColors.secondaryColor),
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -24,7 +25,7 @@ class _InputFieldState extends State<InputField> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(
-            color: Color(0xFFf6fed1), // Outline color when focused
+            color: AppColors.secondaryColor, // Outline color when focused
             width: 2.0, // Outline thickness when focused
           ),
         ),
@@ -33,7 +34,7 @@ class _InputFieldState extends State<InputField> {
           color: Colors.grey,
         ),
         floatingLabelStyle: TextStyle(
-          color: Color(0xFFf6fed1),
+          color: AppColors.secondaryColor,
         ),
       ),
     );
