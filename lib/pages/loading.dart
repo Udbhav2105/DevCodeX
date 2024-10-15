@@ -2,6 +2,7 @@ import 'package:DevCodeX/services/gfg_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:DevCodeX/services/leetcode_api.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 import 'package:DevCodeX/services/cfdata.dart';
 
@@ -58,8 +59,8 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF161616),iconTheme: const IconThemeData(color: Colors.white),),
-      backgroundColor: const Color(0xFF161616),
+      appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
+      backgroundColor: AppColors.backgroundColor,
       body: const Center(
         child: SpinKitFadingCube(
           color: Colors.white,

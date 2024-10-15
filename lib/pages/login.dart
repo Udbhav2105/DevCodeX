@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:DevCodeX/components/input_field.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -28,7 +29,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF161616),
+      backgroundColor: AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
                   'ENTER USERNAME',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xFFf6fed1),
+                    color: AppColors.secondaryColor,
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 4,
@@ -84,19 +85,19 @@ class _LoginState extends State<Login> {
                 },
                 icon: const Icon(
                   Icons.arrow_forward,
-                  color: Color(0xFF161616),
+                  color: AppColors.backgroundColor,
                 ),
                 label: const Text(
                   "Next",
                   style: TextStyle(
-                    color: Color(0xFF161616),
+                    color: AppColors.backgroundColor,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFf6fed1),
+                    backgroundColor:  AppColors.secondaryColor,
                     padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),

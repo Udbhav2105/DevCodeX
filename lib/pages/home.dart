@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:DevCodeX/services/app_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatelessWidget {
@@ -11,9 +12,10 @@ class Home extends StatelessWidget {
     final routeData = ModalRoute.of(context)?.settings.arguments;
 
     if (routeData == null) {
-      return const Scaffold(
-        backgroundColor: Color(0xFF161616),
-        body: Center(
+      return Scaffold(
+        appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
+        backgroundColor: AppColors.backgroundColor,
+        body: const Center(
           child: Text('No data available'),
         ),
       );
@@ -35,12 +37,12 @@ class Home extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: const Color(0xFFf6fed1).withOpacity(0.5),
+                color: AppColors.secondaryColor.withOpacity(0.5),
               ),
             ),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff161616),
+                backgroundColor: AppColors.backgroundColor,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
@@ -79,12 +81,12 @@ class Home extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: const Color(0xFFf6fed1).withOpacity(0.5),
+                color: AppColors.secondaryColor.withOpacity(0.5),
               ),
             ),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff161616),
+                backgroundColor: AppColors.backgroundColor,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
@@ -124,12 +126,12 @@ class Home extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: const Color(0xFFf6fed1).withOpacity(0.5),
+                color: AppColors.secondaryColor.withOpacity(0.5),
               ),
             ),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff161616),
+                backgroundColor: AppColors.backgroundColor,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
@@ -159,8 +161,7 @@ class Home extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF161616),iconTheme: const IconThemeData(color: Colors.white),),
-      backgroundColor: const Color(0xFF161616),
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(

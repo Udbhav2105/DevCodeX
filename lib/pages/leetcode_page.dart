@@ -4,6 +4,7 @@ import 'package:DevCodeX/components/lc_badges_card.dart';
 import 'package:DevCodeX/components/problem_count_card.dart';
 import 'package:DevCodeX/components/username_avatar.dart';
 import 'package:DevCodeX/components/radial_bargraph.dart';
+import 'package:DevCodeX/services/app_color.dart';
 
 class LeetcodePage extends StatelessWidget {
   LeetcodePage({super.key});
@@ -14,8 +15,8 @@ class LeetcodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     d = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF161616),iconTheme: const IconThemeData(color: Colors.white),),
-      backgroundColor: const Color(0xFF161616),
+      appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
+      backgroundColor:  AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
