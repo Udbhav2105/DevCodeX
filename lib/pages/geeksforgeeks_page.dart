@@ -46,6 +46,7 @@ class GeeksforgeeksState extends State<Geeksforgeeks> {
     };
 
     return Scaffold(
+        appBar: AppBar(backgroundColor: const Color(0xFF161616),iconTheme: const IconThemeData(color: Colors.white),),
         backgroundColor: const Color(0xFF161616),
         body: SingleChildScrollView(
           child: Column(

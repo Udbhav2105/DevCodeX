@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
     final routeData = ModalRoute.of(context)?.settings.arguments;
 
     if (routeData == null) {
-      return Scaffold(
+      return const Scaffold(
         backgroundColor: Color(0xFF161616),
         body: Center(
           child: Text('No data available'),
@@ -31,18 +31,18 @@ class Home extends StatelessWidget {
           width: cardWidth,
           height: cardHeight,
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Color(0xFFf6fed1).withOpacity(0.5),
+                color: const Color(0xFFf6fed1).withOpacity(0.5),
               ),
             ),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff161616),
+                backgroundColor: const Color(0xff161616),
                 foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -55,7 +55,7 @@ class Home extends StatelessWidget {
                 height: 60,
                 width: 60,
               ),
-              label: FittedBox(
+              label: const FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
                   "Leetcode",
@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
           ),
         ),
       );
-      cfOrLc.add(SizedBox(height: 30));
+      cfOrLc.add(const SizedBox(height: 30));
     }
 
     if (data['gfgData'] != null && data['gfgData'].gfgAuth) {
@@ -75,18 +75,18 @@ class Home extends StatelessWidget {
           width: cardWidth,
           height: cardHeight,
           child: Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: Color(0xFFf6fed1).withOpacity(0.5),
+                color: const Color(0xFFf6fed1).withOpacity(0.5),
               ),
             ),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff161616),
+                backgroundColor: const Color(0xff161616),
                 foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -100,7 +100,7 @@ class Home extends StatelessWidget {
                 height: 60,
                 width: 60,
               ),
-              label: FittedBox(
+              label: const FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
                   "GFG",
@@ -111,7 +111,7 @@ class Home extends StatelessWidget {
           ),
         ),
       );
-      cfOrLc.add(SizedBox(height: 30));
+      cfOrLc.add(const SizedBox(height: 30));
     }
 
     if (data['cfData'] != null && data['cfData'].cfAuth) {
@@ -120,18 +120,18 @@ class Home extends StatelessWidget {
           width: cardWidth,
           height: cardHeight,
           child: Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: Color(0xFFf6fed1).withOpacity(0.5),
+                color: const Color(0xFFf6fed1).withOpacity(0.5),
               ),
             ),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff161616),
+                backgroundColor: const Color(0xff161616),
                 foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -145,7 +145,7 @@ class Home extends StatelessWidget {
                 height: 60,
                 width: 60,
               ),
-              label: FittedBox(
+              label: const FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
                   "Codeforces",
@@ -159,7 +159,8 @@ class Home extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xFF161616),
+      appBar: AppBar(backgroundColor: const Color(0xFF161616),iconTheme: const IconThemeData(color: Colors.white),),
+      backgroundColor: const Color(0xFF161616),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(

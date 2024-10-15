@@ -38,6 +38,7 @@ class CodeforcesState extends State<Codeforces> {
     contestData = {'Max Rating': d['cfData'].maxRating, 'Max Rank': d['cfData'].maxRank, 'Current Rating': d['cfData'].userRating, 'Current Rank': d['cfData'].rank};
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: const Color(0xFF161616),iconTheme: const IconThemeData(color: Colors.white),),
       backgroundColor: const Color(0xFF161616),
       body: SingleChildScrollView(
         child: Column(
