@@ -161,6 +161,7 @@ class Home extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
