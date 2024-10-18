@@ -58,10 +58,9 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
+    return const Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: const Center(
+      body: Center(
         child: SpinKitFadingCube(
           color: Colors.white,
           size: 50,
