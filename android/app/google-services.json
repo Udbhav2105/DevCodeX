@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "394795281480",
+    "project_id": "devcodex-e78be",
+    "storage_bucket": "devcodex-e78be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394795281480:android:cdd303c53d64ddc93a3c7d",
+        "android_client_info": {
+          "package_name": "com.example.DevCodeX"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394795281480-3d4m0bdh454b328npmim24jjrqduco6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFDLbvm5bZWfPDqq1sSOWW9-0U5At-vbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394795281480-3d4m0bdh454b328npmim24jjrqduco6u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "394795281480-1rudls6f9ino4cduurden2cvvr1p02a8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.DevCodeX"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394795281480:android:8c29019df8b540cb3a3c7d",
+        "android_client_info": {
+          "package_name": "com.udbhavvaibhav.devcodex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394795281480-3d4m0bdh454b328npmim24jjrqduco6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFDLbvm5bZWfPDqq1sSOWW9-0U5At-vbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394795281480-3d4m0bdh454b328npmim24jjrqduco6u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "394795281480-1rudls6f9ino4cduurden2cvvr1p02a8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.DevCodeX"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
