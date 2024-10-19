@@ -5,6 +5,9 @@ import 'package:DevCodeX/services/leetcode_api.dart';
 import 'package:DevCodeX/services/app_color.dart';
 
 import 'package:DevCodeX/services/cfdata.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:DevCodeX/services/dcx_user.dart';
+import 'package:DevCodeX/auth.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -14,6 +17,8 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  final FirebaseFirestore db = FirebaseFirestore.instance;
+  final AuthService _auth = AuthService();
   Map data = {};
   // Function to fetch Codeforces data using the provided username
   void setUpLeetcodeAndCodeforces() async {
@@ -23,6 +28,21 @@ class _LoadingState extends State<Loading> {
     String cfUsername = data['cfUsername']; // Get the Codeforces username
     String gfgUsername = data['gfgUsername'];
 
+    // Save the data to Firestore
+    if (_auth.currentUser == null || _auth.currentUser?.uid == null) {
+        print('User is null');
+      } else {
+          final dcxUser = DcxUser(
+          cfUsername: data['cfUsername'],
+          lcUsername: data['lcUsername'],
+          gfgUsername: data['gfgUsername'],
+          uid: _auth.currentUser!.uid);
+          final docRef = db.collection('users').withConverter(
+            fromFirestore: DcxUser.fromFirestore,
+            toFirestore: (dcxUser, options) => dcxUser.toFirestore(),
+          ).doc(_auth.currentUser!.uid);
+          await docRef.set(dcxUser);
+      }
     // Fetch Codeforces data
     // Map<String, int> codeforcesData = await fetchCodeforcesData(cfUsername);
     CfData codeforcesData = CfData(username: cfUsername);
