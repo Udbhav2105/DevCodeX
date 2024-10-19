@@ -1,22 +1,10 @@
 import 'dart:convert';
 
-// import 'package:leetcode_unofficial_api/models/submit_stats.dart';
-// import 'package:leetcode_unofficial_api/models/user_data.dart';
-// import 'package:DevCodeX/services/user.dart';
-// import 'package:leetcode_api_dart/leetcode_api_dart.dart';
-// import 'package:leetcode_api_dart/models/problem.dart';
-import 'package:http/http.dart';
 import 'package:leetcode_unofficial_api/apis.dart';
 
-import 'package:leetcode_unofficial_api/apis.dart';
 
-// import 'package:leetcode_unofficial_api/models/lc_problem.dart';
 import 'package:http/http.dart' as http;
-import 'package:leetcode_unofficial_api/models/submit_stats.dart';
-import 'package:leetcode_unofficial_api/models/user_badges/badges.dart';
-import 'package:leetcode_unofficial_api/models/user_data.dart';
 
-// import 'package:html/parser.dart' as htmlParser;
 
 class Lc {
   late dynamic lcUsername;
@@ -84,7 +72,7 @@ class Lc {
       if (badge.icon.startsWith('/static')) {
         return 'https://leetcode.com${badge.icon}';
       } else {
-        return badge.icon ?? ''; // Return icon or an empty string
+        return badge.icon;
       }
     }).toList();
     print('Badge URLs: $badgeUrls');
