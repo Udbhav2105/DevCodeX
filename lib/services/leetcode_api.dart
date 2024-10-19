@@ -81,7 +81,7 @@ class Lc {
     final userBadges = await LeetCodeAPI.instance.userBadges();
 
     badgeUrls = userBadges?.badges.map((badge) {
-      if (badge.icon != null && badge.icon.startsWith('/static')) {
+      if (badge.icon.startsWith('/static')) {
         return 'https://leetcode.com${badge.icon}';
       } else {
         return badge.icon ?? ''; // Return icon or an empty string
@@ -185,7 +185,7 @@ class Lc {
   }
 
   Future<void> getAllProblems() async {
-    final String graphqlUrl = 'https://leetcode.com/graphql';
+    const String graphqlUrl = 'https://leetcode.com/graphql';
     final Map<String, dynamic> payload = {
       "query": """
         query problemsetQuestionList(\$categorySlug: String, \$limit: Int, \$skip: Int, \$filters: QuestionListFilterInput) {

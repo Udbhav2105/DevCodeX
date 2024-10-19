@@ -9,7 +9,7 @@ class RadialBarChart extends StatelessWidget {
   final int totalEasy;
   final int totalMedium;
   final int totalHard;
-  RadialBarChart(this.easy, this.medium, this.hard, this.totalEasy, this.totalMedium, this.totalHard);
+  RadialBarChart(this.easy, this.medium, this.hard, this.totalEasy, this.totalMedium, this.totalHard, {super.key});
 
   String? extremeCountOneName;
 
@@ -37,7 +37,7 @@ class RadialBarChart extends StatelessWidget {
       ChartData('Easy', easy.toDouble(), totalEasy.toDouble(), Colors.green[300]!),
     ];
 
-    return Container(
+    return SizedBox(
       height: 200, // Set a specific height for the chart
       width: 200,
       child: SfCircularChart(

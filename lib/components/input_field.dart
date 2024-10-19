@@ -17,23 +17,23 @@ class _InputFieldState extends State<InputField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
-      style: TextStyle(color: AppColors.secondaryColor),
+      style: const TextStyle(color: AppColors.secondaryColor),
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.secondaryColor, // Outline color when focused
             width: 2.0, // Outline thickness when focused
           ),
         ),
         labelText: widget.inputText,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           color: Colors.grey,
         ),
-        floatingLabelStyle: TextStyle(
+        floatingLabelStyle: const TextStyle(
           color: AppColors.secondaryColor,
         ),
       ),

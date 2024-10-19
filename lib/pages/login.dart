@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
       backgroundColor: AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [

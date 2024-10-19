@@ -28,13 +28,13 @@ class ProblemCountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> extremeText = [];
     if (extremeCount1 != null) {
-      extremeText.add(SizedBox(
+      extremeText.add(const SizedBox(
         height: 20,
       ));
       extremeText.add(
         Text(
           '$extremeCountOneName: $extremeCount1',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.purple,
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -43,20 +43,20 @@ class ProblemCountCard extends StatelessWidget {
       );
     }
     if (extremeCount2 != null) {
-      extremeText.add(SizedBox(
+      extremeText.add(const SizedBox(
         height: 20,
       ));
       extremeText.add(
         Text(
           '$extremeCountTwoName: $extremeCount2',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.deepPurple,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
       );
-      extremeText.add(SizedBox(
+      extremeText.add(const SizedBox(
         height: 20,
       ));
     }
@@ -71,7 +71,7 @@ class ProblemCountCard extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(14),
         ),
-        margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+        margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
         child:
         Card(
           elevation: 100,
@@ -98,12 +98,12 @@ class ProblemCountCard extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     // RadialBarChart(widget.easyCount,widget.mediumCount,widget.hardCount),
                     chart,
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     Column(
@@ -117,23 +117,23 @@ class ProblemCountCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
                           "Medium: $mediumCount",
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.orange,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
                           "Hard: $hardCount",
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.red,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

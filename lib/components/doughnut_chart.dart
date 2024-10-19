@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DoughnutChart extends StatefulWidget {
   final List<ChartDataCF> chartData;
-  const DoughnutChart(this.chartData);
+  const DoughnutChart(this.chartData, {super.key});
   @override
   State<DoughnutChart> createState() => _DoughnutChartState();
 }
@@ -19,7 +19,7 @@ class _DoughnutChartState extends State<DoughnutChart> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       width: 200,
       child: SfCircularChart(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BadgesCard extends StatelessWidget {
   final List<String> badges;
 
-  BadgesCard(this.badges, {super.key});
+  const BadgesCard(this.badges, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class BadgesCard extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(14),
         ),
-        margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+        margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
         child: Card(
           elevation: 100,
           color:  AppColors.backgroundColor,
@@ -67,7 +67,7 @@ class BadgesCard extends StatelessWidget {
                   ),
                 ),
                 // Use Expanded to ensure proper height management
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 ...data,
       ],
       )

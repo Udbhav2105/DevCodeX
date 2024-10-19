@@ -3,7 +3,7 @@ import 'package:DevCodeX/services/app_color.dart';
 class ContestCard extends StatelessWidget {
   final Map<String, dynamic> contestData;
 
-  ContestCard({super.key, required this.contestData});
+  const ContestCard({super.key, required this.contestData});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ContestCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(14),
       ),
-      margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+      margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
       child: Card(
         elevation: 0,
         color:  AppColors.backgroundColor,
@@ -33,7 +33,7 @@ class ContestCard extends StatelessWidget {
                     fontSize: 20),
               ),
               ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: contestData.length,
                 itemBuilder: (context, index) {

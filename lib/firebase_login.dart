@@ -3,7 +3,7 @@ import 'package:DevCodeX/auth.dart';
 
 class FirebaseLogin extends StatelessWidget {
   final AuthService _auth = AuthService();
-  FirebaseLogin({Key? key}) : super(key: key);
+  FirebaseLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
