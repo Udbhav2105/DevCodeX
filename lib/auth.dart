@@ -41,7 +41,7 @@ class AuthService {
   // Sign out
   Future<void> signOut() async {
     await _auth.signOut();
-    await _googleSignIn.signOut();
+    await _googleSignIn.disconnect();
   }
 
   // Auth state changes

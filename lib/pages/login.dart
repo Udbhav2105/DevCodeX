@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:DevCodeX/components/input_field.dart';
 import 'package:DevCodeX/services/app_color.dart';
+import 'package:DevCodeX/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,6 +14,7 @@ class _LoginState extends State<Login> {
   final TextEditingController cfUsername = TextEditingController();
   final TextEditingController lcUsername = TextEditingController();
   final TextEditingController gfgUsername = TextEditingController();
+  final AuthService _auth = AuthService();
 
   // @override
   // void didChangeDependencies() {
@@ -97,7 +99,34 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor:  AppColors.secondaryColor,
+                    backgroundColor: AppColors.secondaryColor,
+                    padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    )),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+                icon: const Icon(
+                  Icons.arrow_forward,
+                  color: AppColors.backgroundColor,
+                ),
+                label: const Text(
+                  "Sign out",
+                  style: TextStyle(
+                    color: AppColors.backgroundColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.secondaryColor,
                     padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
