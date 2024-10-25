@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:DevCodeX/components/input_field.dart';
 import 'package:DevCodeX/services/app_color.dart';
 import 'package:DevCodeX/auth.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,20 +15,8 @@ class _LoginState extends State<Login> {
   final TextEditingController cfUsername = TextEditingController();
   final TextEditingController lcUsername = TextEditingController();
   final TextEditingController gfgUsername = TextEditingController();
-  final AuthService _auth = AuthService();
+  late AuthService _auth;
 
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   cfUsername.clear();
-  //   lcUsername.clear();
-  // }
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   didChangeDependencies();
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,16 +61,16 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 66),
               ElevatedButton.icon(
                 onPressed: () {
-                  // print(cfUsername.text);
+                  print('cfUsername: ${cfUsername.text.trim()}, lcUsername: ${lcUsername.text.trim()}, gfgUsername: ${gfgUsername.text.trim()}');
                   if (cfUsername.text.isEmpty &&
                       lcUsername.text.isEmpty &&
                       gfgUsername.text.isEmpty) {
                     print('Cannot be empty');
                   } else {
                     Navigator.pushNamed(context, '/loading', arguments: {
-                      'cfUsername': cfUsername.text,
-                      'lcUsername': lcUsername.text,
-                      'gfgUsername': gfgUsername.text,
+                      'cfUsername': cfUsername.text.trim(),
+                      'lcUsername': lcUsername.text.trim(),
+                      'gfgUsername': gfgUsername.text.trim(),
                     });
                   }
                 },
@@ -138,4 +127,9 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  _auth = Provider.of<AuthService>(context);
+}
 }
