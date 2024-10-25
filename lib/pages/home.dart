@@ -1,6 +1,8 @@
+import 'package:DevCodeX/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:DevCodeX/services/app_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -10,10 +12,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routeData = ModalRoute.of(context)?.settings.arguments;
+    final AuthService _auth = Provider.of<AuthService>(context);
 
     if (routeData == null) {
       return Scaffold(
-        appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
+        appBar: AppBar(
+          backgroundColor: AppColors.backgroundColor,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
         backgroundColor: AppColors.backgroundColor,
         body: const Center(
           child: Text('No data available'),
@@ -44,7 +50,8 @@ class Home extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.backgroundColor,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -88,7 +95,8 @@ class Home extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.backgroundColor,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -133,7 +141,8 @@ class Home extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.backgroundColor,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -161,7 +170,26 @@ class Home extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: AppColors.backgroundColor,iconTheme: const IconThemeData(color: Colors.white),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await _auth.signOut();
+          if (context.mounted) {
+            // Check if context is still valid
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/',
+                (route) =>
+                    false // This removes all previous routes from the stack
+                );
+          }
+          print('User signed out');
+        },
+        backgroundColor: AppColors.secondaryColor,
+        child: const Icon(Icons.logout),
+      ),
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
