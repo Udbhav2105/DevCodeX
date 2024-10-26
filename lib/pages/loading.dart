@@ -76,7 +76,7 @@ void initState() {
   super.initState();
 
   WidgetsBinding.instance.addPostFrameCallback((_) async {
-    final arguments = ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
+    final arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
 
     if (arguments != null) {
       // Use arguments passed to this page
