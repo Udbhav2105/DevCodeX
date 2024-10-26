@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:DevCodeX/auth.dart';
 import 'package:DevCodeX/pages/auth_wrapper.dart';
+import 'package:DevCodeX/pages/user_search_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/leetcodePage': (context) => LeetcodePage(),
         '/codeforcesPage': (context) => const Codeforces(),
         '/geeksforgeeksPage': (context) => const Geeksforgeeks(),
+        '/userSearchScreen': (context) => const UserSearchScreen(),
       },
     );
   }
