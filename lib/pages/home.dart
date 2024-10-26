@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:DevCodeX/services/app_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:DevCodeX/pages/user_search_screen.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -168,6 +169,43 @@ class Home extends StatelessWidget {
         ),
       );
     }
+    // cfOrLc.add(const SizedBox(height: 30));
+    // cfOrLc.add(
+    //   SizedBox(
+    //     width: cardWidth,
+    //     height: cardHeight,
+    //     child: Container(
+    //       padding: const EdgeInsets.all(16),
+    //       decoration: BoxDecoration(
+    //         borderRadius: BorderRadius.circular(10),
+    //         border: Border.all(
+    //           color: AppColors.secondaryColor.withOpacity(0.5),
+    //         ),
+    //       ),
+    //       child: ElevatedButton.icon(
+    //         style: ElevatedButton.styleFrom(
+    //           backgroundColor: AppColors.backgroundColor,
+    //           foregroundColor: Colors.white,
+    //           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+    //           shape: RoundedRectangleBorder(
+    //             borderRadius: BorderRadius.circular(12),
+    //           ),
+    //         ),
+    //         onPressed: () {
+    //           Navigator.pushNamed(context, '/userSearchScreen');
+    //         },
+    //         icon: const Icon(Icons.search),
+    //         label: const FittedBox(
+    //           fit: BoxFit.scaleDown,
+    //           child: Text(
+    //             "Search",
+    //             style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -187,6 +225,33 @@ class Home extends StatelessWidget {
         child: const Icon(Icons.logout),
       ),
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/userSearchScreen');
+              },
+              icon: const Icon(
+                Icons.search,
+                color: AppColors.backgroundColor,
+              ),
+              label: const Text(
+                "Search Users",
+                style: TextStyle(
+                  color: AppColors.backgroundColor,
+                  fontSize: 20,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.secondaryColor,
+                  padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )),
+            ),
+          ),
+        ],
         backgroundColor: AppColors.backgroundColor,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
