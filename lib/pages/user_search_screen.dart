@@ -43,7 +43,7 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
             onChanged: _onSearchChanged,
             decoration: const InputDecoration(
               labelStyle: TextStyle(color: AppColors.secondaryColor),
-              labelText: 'Search by username',
+              labelText: 'Search by uid',
               border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.secondaryColor),
               ),
               enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.secondaryColor),
@@ -64,12 +64,8 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
                     print(userDoc['uid']);
                     print(userDoc['cfUsername']);
                     print('type: ${userDoc['cfUsername'].runtimeType}');
-                    // Handle user tap (e.g., navigate to user profile)
-                    Navigator.pushReplacementNamed(context, '/loading', arguments: {
-                      // 'uid': userDoc['uid'],
-                      'cfUsername': userDoc['cfUsername'],
-                      'lcUsername': userDoc['lcUsername'],
-                      'gfgUsername': userDoc['gfgUsername'],
+                    Navigator.pushReplacementNamed(context, '/compareLoading', arguments: {
+                      'user2': userDoc['uid'],
                     });
                   },
                 );
