@@ -32,6 +32,7 @@ class Home extends StatelessWidget {
 
     const cardWidth = 300.0;
     const cardHeight = 184.0;
+    print(data.keys);
 
     if (data['lcData'] != null && data['lcData'].lcAuth) {
       cfOrLc.add(

@@ -1,3 +1,5 @@
+import 'package:DevCodeX/pages/compare_home.dart';
+import 'package:DevCodeX/pages/compare_loading.dart';
 import 'package:DevCodeX/pages/geeksforgeeks_page.dart';
 import 'package:flutter/material.dart';
 import 'package:DevCodeX/pages/leetcode_page.dart';
@@ -11,6 +13,7 @@ import 'firebase_options.dart';
 import 'package:DevCodeX/auth.dart';
 import 'package:DevCodeX/pages/auth_wrapper.dart';
 import 'package:DevCodeX/pages/user_search_screen.dart';
+import 'package:DevCodeX/pages/compare_lc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +45,9 @@ class MyApp extends StatelessWidget {
         '/codeforcesPage': (context) => const Codeforces(),
         '/geeksforgeeksPage': (context) => const Geeksforgeeks(),
         '/userSearchScreen': (context) => const UserSearchScreen(),
+        '/compareHome': (context) => const CompareHome(),
+        '/compareLeetcode': (context) => CompareLeetcode(),
+        '/compareLoading': (context) => const CompareLoading(),
       },
     );
   }
