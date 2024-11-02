@@ -5,12 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
-  Home({super.key});
-
-  Map<String, dynamic> data = {};
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> data = {};
     final routeData = ModalRoute.of(context)?.settings.arguments;
     final AuthService _auth = Provider.of<AuthService>(context);
 

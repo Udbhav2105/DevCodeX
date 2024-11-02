@@ -5,13 +5,12 @@ import 'package:DevCodeX/services/app_color.dart';
 import 'package:DevCodeX/services/compare_chart_data.dart';
 
 class CompareLeetcode extends StatelessWidget {
-  CompareLeetcode({super.key});
+  const CompareLeetcode({super.key});
   
-  Map<String, dynamic> d = {};
 
   @override
   Widget build(BuildContext context) {
-    d = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    Map<String, dynamic> d = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     Lc lcUser1 = d['lcDataUser1'] as Lc;
     Lc lcUser2 = d['lcDataUser2'] as Lc;
     List<ChartDataCompare> user1 = [
@@ -30,6 +29,7 @@ class CompareLeetcode extends StatelessWidget {
         child: Column(
           children: [
             CompareQuestionCount(user1: user1, user2: user2, username1: lcUser1.lcUsername,username2: lcUser2.lcUsername,),
+            const SizedBox(height: 20),
           ],
         ),  
       )

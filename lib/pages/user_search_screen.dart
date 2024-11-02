@@ -11,13 +11,13 @@ class UserSearchScreen extends StatefulWidget {
 }
 
 class _UserSearchScreenState extends State<UserSearchScreen> {
-  String _searchQuery = '';
+  // String _searchQuery = '';
   List<DocumentSnapshot> _results = [];
 
   void _onSearchChanged(String query) async {
     print('Search query: $query');
     setState(() {
-      _searchQuery = query;
+      // _searchQuery = query;
     });
     if (query.isNotEmpty) {
       final results = await searchFirebaseUsers(query);

@@ -1,3 +1,4 @@
+import 'package:DevCodeX/pages/compare_cf.dart';
 import 'package:DevCodeX/pages/compare_home.dart';
 import 'package:DevCodeX/pages/compare_loading.dart';
 import 'package:DevCodeX/pages/geeksforgeeks_page.dart';
@@ -39,15 +40,16 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const AuthWrapper(),
         '/login': (context) => const Login(),
-        '/home': (context) => Home(),
+        '/home': (context) => const Home(),
         '/loading': (context) => const Loading(),
-        '/leetcodePage': (context) => LeetcodePage(),
+        '/leetcodePage': (context) => const LeetcodePage(),
         '/codeforcesPage': (context) => const Codeforces(),
         '/geeksforgeeksPage': (context) => const Geeksforgeeks(),
         '/userSearchScreen': (context) => const UserSearchScreen(),
         '/compareHome': (context) => const CompareHome(),
-        '/compareLeetcode': (context) => CompareLeetcode(),
+        '/compareLeetcode': (context) => const CompareLeetcode(),
         '/compareLoading': (context) => const CompareLoading(),
+        '/compareCf': (context) => const CompareCf(),
       },
     );
   }
