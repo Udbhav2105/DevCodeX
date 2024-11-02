@@ -73,6 +73,50 @@ class CompareHome extends StatelessWidget {
       );
       cfOrLc.add(const SizedBox(height: 30));
     }
+    if ((data['cfDataUser1'] != null || data['cfDataUser2'] != null) && (data['cfDataUser1'].cfAuth || data['cfDataUser2'].cfAuth)) {
+      cfOrLc.add(
+        SizedBox(
+          width: cardWidth,
+          height: cardHeight,
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColors.secondaryColor.withOpacity(0.5),
+              ),
+            ),
+            child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.backgroundColor,
+                foregroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/compareCf',
+                    arguments: data);
+              },
+              icon: Image.network(
+                'https://sta.codeforces.com/s/13783/images/codeforces-logo-with-telegram.png',
+                height: 60,
+                width: 60,
+              ),
+              label: const FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "Codeforces",
+                  style: TextStyle(letterSpacing: 1.7, fontSize: 23),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
