@@ -1,4 +1,5 @@
 import 'package:DevCodeX/services/app_color.dart';
+import 'package:DevCodeX/services/chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:DevCodeX/services/search_firebase_users.dart';
@@ -20,7 +21,7 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
       // _searchQuery = query;
     });
     if (query.isNotEmpty) {
-      final results = await searchFirebaseUsers(query);
+      final results = await searchFirebaseUsers(context, query);
       setState(() {
         _results = results;
       });
@@ -64,9 +65,10 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
                     print(userDoc['uid']);
                     print(userDoc['cfUsername']);
                     print('type: ${userDoc['cfUsername'].runtimeType}');
-                    Navigator.pushReplacementNamed(context, '/compareLoading', arguments: {
-                      'user2': userDoc['uid'],
-                    });
+                    // Navigator.pushReplacementNamed(context, '/compareLoading', arguments: {
+                    //   'user2': userDoc['uid'],
+                    // });
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(receiverId: userDoc['uid'])));
                   },
                 );
               },
