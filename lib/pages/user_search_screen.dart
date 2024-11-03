@@ -36,7 +36,9 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(backgroundColor: AppColors.backgroundColor,),
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 10),
@@ -45,11 +47,14 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
             decoration: const InputDecoration(
               labelStyle: TextStyle(color: AppColors.secondaryColor),
               labelText: 'Search by uid',
-              border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.secondaryColor),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.secondaryColor),
               ),
-              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.secondaryColor),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.secondaryColor),
               ),
-              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.secondaryColor),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.secondaryColor),
               ),
             ),
             style: const TextStyle(color: AppColors.secondaryColor),
@@ -60,16 +65,72 @@ class _UserSearchScreenState extends State<UserSearchScreen> {
               itemBuilder: (context, index) {
                 final userDoc = _results[index];
                 return ListTile(
-                  title: Text(userDoc['uid'], style: const TextStyle(color: AppColors.secondaryColor)),
-                  onTap: () {
-                    print(userDoc['uid']);
-                    print(userDoc['cfUsername']);
-                    print('type: ${userDoc['cfUsername'].runtimeType}');
-                    // Navigator.pushReplacementNamed(context, '/compareLoading', arguments: {
-                    //   'user2': userDoc['uid'],
-                    // });
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(receiverId: userDoc['uid'])));
-                  },
+                  title: Text(userDoc['uid'],
+                      style: const TextStyle(color: AppColors.secondaryColor)),
+                  subtitle: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          print(userDoc['uid']);
+                          print(userDoc['cfUsername']);
+                          print('type: ${userDoc['cfUsername'].runtimeType}');
+                          Navigator.pushReplacementNamed(context, '/compareLoading', arguments: {
+                            'user2': userDoc['uid'],
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.compare_arrows,
+                          color: AppColors.backgroundColor,
+                        ),
+                        label: const Text(
+                          "Compare",
+                          style: TextStyle(
+                            color: AppColors.backgroundColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.secondaryColor,
+                            padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            )),
+                      ),
+                      const SizedBox(width: 10),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ChatPage(receiverId: userDoc['uid'])));
+                        },
+                        icon: const Icon(
+                          Icons.chat,
+                          color: AppColors.backgroundColor,
+                        ),
+                        label: const Text(
+                          "Chat",
+                          style: TextStyle(
+                            color: AppColors.backgroundColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.secondaryColor,
+                            padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            )),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
