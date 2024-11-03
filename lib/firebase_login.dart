@@ -2,14 +2,15 @@ import 'package:DevCodeX/services/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:DevCodeX/auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class FirebaseLogin extends StatelessWidget {
-  final AuthService _auth = AuthService();
 
-  FirebaseLogin({super.key});
+  const FirebaseLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AuthService _auth = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
